@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\alexp\\\\ENCLAII\\\\public\" -ErrorAction SilentlyContinue | ForEach-Object { $_.Name }; Write-Host \"---\"; Get-ChildItem \"c:\\\\Users\\\\alexp\\\\ENCLAII\\\\src\" -Recurse -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })",
+      "Bash(npm install *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)"
+    ]
+  }
+}
