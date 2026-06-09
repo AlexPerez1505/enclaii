@@ -1,13 +1,23 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useEffect, useState } from 'react'
+import { motion, useSpring, useMotionValue, useAnimate } from 'framer-motion'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const REST_TILT = [
+  { rot: -3.5, tx: -10 },
+  { rot:  2.8, tx:   8 },
+  { rot: -2.0, tx:  -6 },
+  { rot:  1.5, tx:   5 },
+]
 
 const PASOS = [
   {
     n: '01',
     title: 'Conecta el equipo',
-    text: 'SIMED se integra con tu torre endoscópica. La captura inicia automáticamente, sin pasos adicionales para el médico o el técnico.',
-    features: ['Compatible con marcas principales', 'Instalación en 1 día', 'Sin cambiar tu flujo actual'],
+    text: 'ENCLAII se integra con tu torre endoscópica. Detecta automáticamente la conexión de los dispositivos de captura.',
+    features: ['Compatible con marcas principales como Olympus', 'Instalación en 1 día', 'Sin cambiar tu flujo actual'],
     color: '#2196f3',
     icon: (
       <svg viewBox="0 0 64 64" className="w-12 h-12" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -18,12 +28,11 @@ const PASOS = [
         <circle cx="18" cy="34" r="5" />
       </svg>
     ),
-    image: '/Conexion.png',
   },
   {
     n: '02',
     title: 'Captura el estudio',
-    text: 'Imágenes y video se digitalizan en tiempo real y se asocian automáticamente al expediente del paciente desde el primer fotograma.',
+    text: 'Imágenes y video se digitalizan en tiempo real y se asocian automáticamente al expediente del paciente desde la primera captura en la base de datos que se almacena en la nube, la cual te permite acceder a ellos desde cualquier dispositivo.',
     features: ['Alta resolución 4K', 'Video en tiempo real', 'Metadatos automáticos'],
     color: '#06b6d4',
     icon: (
@@ -40,7 +49,7 @@ const PASOS = [
   {
     n: '03',
     title: 'IA analiza hallazgos',
-    text: 'Los modelos de inteligencia artificial analizan cada frame. Destacan automáticamente pólipos, lesiones o irregularidades para revisión del especialista.',
+    text: 'Los modelos de inteligencia artificial analizan cada frame. Destacan automáticamente pólipos, lesiones o irregularidades para revisión del especialista herramienta de apoyo para los medicos para un diagnostico más preciso.',
     features: ['Análisis en tiempo real', 'Alta sensibilidad diagnóstica', 'Aprendizaje continuo'],
     color: '#a855f7',
     icon: (
@@ -71,407 +80,254 @@ const PASOS = [
   },
 ]
 
-function ConexionImagen({ src, alt }) {
-  return (
-    <div className="cf-img-wrap">
-      <div className="cf-img-glow" aria-hidden />
-      <div className="cf-img-frame">
-        <img src={src} alt={alt} width={440} height={440} loading="lazy" decoding="async" />
-      </div>
-    </div>
-  )
-}
+const SPRING   = { stiffness: 55, damping: 22, mass: 1 }
+const N        = PASOS.length
+const SEG      = 1 / N
+const STACK_OFFSET = 22
 
-const FlipHint = ({ label }) => (
-  <span className="cf-flip-hint mt-5 inline-flex items-center gap-1.5 text-xs text-slate-500">
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-    </svg>
-    {label}
-  </span>
-)
-
-function PasoInfoFlipCard({ paso }) {
-  const [flipped, setFlipped] = useState(false)
-  const [paused, setPaused] = useState(false)
-  const intervalRef = useRef(null)
-
-  const toggle = useCallback(() => setFlipped(f => !f), [])
-
-  useEffect(() => {
-    if (paused) return undefined
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced) return undefined
-
-    intervalRef.current = window.setInterval(() => {
-      setFlipped(f => !f)
-    }, 5200)
-
-    return () => {
-      if (intervalRef.current) window.clearInterval(intervalRef.current)
-    }
-  }, [paused])
-
-  return (
-    <div
-      className="cf-flip w-full"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <button
-        type="button"
-        className={`cf-flip-inner${flipped ? ' is-flipped' : ''}`}
-        onClick={toggle}
-        aria-pressed={flipped}
-        aria-label={flipped ? 'Voltear y ver descripción general' : 'Voltear y ver beneficios'}
-      >
-        {/* Frente: descripción principal */}
-        <div className="cf-flip-face cf-flip-front">
-          <div className="cf-flip-content">
-            <span
-              className="absolute top-3 right-4 text-6xl md:text-7xl font-bold leading-none select-none pointer-events-none"
-              style={{ color: paso.color, opacity: 0.08 }}
-              aria-hidden
-            >
-              {paso.n}
-            </span>
-            <div className="mb-4" style={{ color: paso.color }}>{paso.icon}</div>
-            <span className="text-[10px] tracking-[0.35em] uppercase" style={{ color: paso.color }}>
-              Paso {paso.n}
-            </span>
-            <h3 className="text-2xl md:text-4xl font-light text-white mt-2 mb-4 leading-tight">
-              {paso.title}
-            </h3>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed border-l-2 pl-5" style={{ borderColor: paso.color }}>
-              {paso.text}
-            </p>
-            <FlipHint label="Toca para ver beneficios" />
-          </div>
-        </div>
-
-        {/* Reverso: beneficios / otra información */}
-        <div className="cf-flip-face cf-flip-back">
-          <div className="cf-flip-content">
-            <span className="text-[10px] tracking-[0.35em] uppercase" style={{ color: paso.color }}>
-              Beneficios clave
-            </span>
-            <h3 className="text-xl md:text-2xl font-light text-white mt-2 mb-5 leading-tight">
-              ¿Por qué conectar con SIMED?
-            </h3>
-            <ul className="space-y-3 text-left">
-              {paso.features.map(f => (
-                <li key={f} className="flex items-start gap-3 text-sm md:text-base text-slate-300">
-                  <span
-                    className="w-2 h-2 rounded-full shrink-0 mt-1.5"
-                    style={{ background: paso.color }}
-                  />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <p className="text-slate-500 text-xs md:text-sm mt-5 leading-relaxed">
-              Integración sin interrumpir tu rutina clínica: el equipo sigue operando igual, con respaldo digital automático.
-            </p>
-            <FlipHint label="Toca para volver" />
-          </div>
-        </div>
-      </button>
-    </div>
-  )
+// Clamp + remap lineal
+function remap(value, inMin, inMax, outMin, outMax) {
+  const t = Math.min(Math.max((value - inMin) / (inMax - inMin), 0), 1)
+  return outMin + (outMax - outMin) * t
 }
 
 export default function ComoFunciona() {
   const sectionRef = useRef(null)
-  const trackRef   = useRef(null)
+  const panelRef   = useRef(null)
+
+  // Shared progress MotionValue driven by GSAP ScrollTrigger
+  const progress = useMotionValue(0)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      /* ── Scroll horizontal con pin de GSAP (no sticky CSS) ── */
-      const horizontal = gsap.to(trackRef.current, {
-        x: () => -(trackRef.current.scrollWidth - window.innerWidth),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${trackRef.current.scrollWidth - window.innerWidth}`,
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          snap: {
-            snapTo: 1 / (PASOS.length - 1),
-            duration: { min: 0.2, max: 0.5 },
-            delay: 0.08,
-            ease: 'power2.inOut',
-          },
-        },
-      })
+    const trigger = ScrollTrigger.create({
+      trigger: sectionRef.current,
+      pin:     panelRef.current,
+      start:   'top top',
+      end:     `+=${N * window.innerHeight}`,
+      scrub:   0.5,
+      onUpdate: (self) => progress.set(self.progress),
+    })
 
-      /* Header se desvanece al iniciar el scroll horizontal */
-      gsap.to('.cf-header', {
-        opacity: 0,
-        y: -20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${window.innerHeight * 0.3}`,
-          scrub: true,
-        },
-      })
-
-      /* Barra de progreso */
-      gsap.to('.cf-progress-bar', {
-        scaleX: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${trackRef.current.scrollWidth - window.innerWidth}`,
-          scrub: true,
-        },
-      })
-
-      return () => horizontal.scrollTrigger?.kill()
-    }, sectionRef)
-
-    return () => ctx.revert()
+    return () => trigger.kill()
   }, [])
 
   return (
-    <section ref={sectionRef} id="como-funciona" className="relative">
-      <style>{`
-        @keyframes cf-img-float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-14px) rotate(0.6deg); }
-        }
-        @keyframes cf-img-glow {
-          0%, 100% { opacity: 0.35; transform: scale(0.95); }
-          50% { opacity: 0.65; transform: scale(1.08); }
-        }
-        @keyframes cf-img-shine {
-          0% { transform: translateX(-120%) skewX(-12deg); }
-          100% { transform: translateX(220%) skewX(-12deg); }
-        }
-        .cf-img-wrap {
-          position: relative;
-          width: 100%;
-          max-width: min(100%, 20rem);
-          margin-inline: auto;
-        }
-        @media (min-width: 768px) {
-          .cf-img-wrap { max-width: 18rem; margin-inline: 0; }
-        }
-        @media (min-width: 1024px) {
-          .cf-img-wrap { max-width: 22rem; }
-        }
-        .cf-img-glow {
-          position: absolute;
-          inset: 8%;
-          border-radius: 1.25rem;
-          background: radial-gradient(ellipse at 50% 50%, rgba(33,150,243,0.45), transparent 68%);
-          animation: cf-img-glow 4.5s ease-in-out infinite;
-          pointer-events: none;
-        }
-        .cf-img-frame {
-          position: relative;
-          z-index: 1;
-          overflow: hidden;
-          border-radius: 1rem;
-          border: 1px solid rgba(33,150,243,0.25);
-          box-shadow: 0 24px 48px -16px rgba(33,150,243,0.35);
-          animation: cf-img-float 4s ease-in-out infinite;
-          will-change: transform;
-        }
-        .cf-img-frame::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
-          animation: cf-img-shine 5s ease-in-out infinite;
-          pointer-events: none;
-        }
-        .cf-img-frame img {
-          display: block;
-          width: 100%;
-          height: auto;
-          object-fit: contain;
-        }
-        .cf-flip { perspective: 1400px; }
-        .cf-flip-inner {
-          position: relative;
-          display: block;
-          width: 100%;
-          min-height: 20rem;
-          aspect-ratio: 5 / 6;
-          transform-style: preserve-3d;
-          transition: transform 0.85s cubic-bezier(0.4, 0.15, 0.2, 1);
-          cursor: pointer;
-          border: none;
-          padding: 0;
-          background: transparent;
-          text-align: left;
-        }
-        @media (min-width: 768px) {
-          .cf-flip-inner { min-height: 22rem; aspect-ratio: auto; height: 100%; }
-        }
-        .cf-flip-inner.is-flipped { transform: rotateY(180deg); }
-        .cf-flip-inner:focus-visible {
-          outline: 2px solid #2196f3;
-          outline-offset: 4px;
-          border-radius: 1.25rem;
-        }
-        .cf-flip-face {
-          position: absolute;
-          inset: 0;
-          border-radius: 1.25rem;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          overflow: hidden;
-          border: 1px solid rgba(33,150,243,0.28);
-          box-shadow: 0 28px 56px -20px rgba(33,150,243,0.35);
-        }
-        .cf-flip-front {
-          background: linear-gradient(160deg, rgba(10,23,51,0.95) 0%, rgba(5,13,31,0.98) 100%);
-        }
-        .cf-flip-back {
-          transform: rotateY(180deg);
-          background: linear-gradient(160deg, rgba(5,13,31,0.98) 0%, rgba(10,30,60,0.95) 100%);
-        }
-        .cf-flip-content {
-          position: relative;
-          height: 100%;
-          padding: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-        @media (min-width: 768px) {
-          .cf-flip-content { padding: 2rem 2rem 2rem 2.25rem; }
-        }
-        .cf-flip-hint { animation: cf-flip-hint-pulse 2.5s ease-in-out infinite; }
-        @keyframes cf-flip-hint-pulse {
-          0%, 100% { opacity: 0.55; }
-          50% { opacity: 1; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .cf-flip-inner { transition-duration: 0.01ms; }
-          .cf-img-glow, .cf-img-frame, .cf-img-frame::after, .cf-flip-hint { animation: none !important; }
-        }
-      `}</style>
-      <div className="h-screen overflow-hidden bg-gradient-to-b from-[#050d1f] to-[#0a1733] relative">
-
-        {/* Barra de progreso superior */}
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/5 z-20">
-          <div
-            className="cf-progress-bar h-full bg-gradient-to-r from-[#2196f3] to-[#10b981] origin-left"
-            style={{ transform: 'scaleX(0)' }}
-          />
+    <section id="como-funciona" ref={sectionRef} className="bg-gradient-to-b from-[#050d1f] to-[#0a1733]">
+      <div
+        ref={panelRef}
+        className="h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      >
+        {/* Título */}
+        <div className="absolute top-20 inset-x-0 text-center pointer-events-none select-none z-10">
+          <p className="text-[10px] text-[#2196f3] tracking-[0.4em] uppercase mb-1">Flujo de trabajo</p>
+          <h2 className="text-2xl md:text-4xl font-light text-white">Cómo funciona ENCLAII</h2>
         </div>
 
-        {/* Header */}
-        <div className="cf-header absolute top-0 left-0 right-0 z-10 text-center pt-10">
-          <span className="text-[10px] text-[#2196f3] tracking-[0.4em] uppercase">Flujo de trabajo</span>
-          <h2 className="text-2xl md:text-4xl font-light text-white mt-2">Cómo funciona SIMED</h2>
-        </div>
-
-        {/* Track horizontal */}
-        <div
-          ref={trackRef}
-          className="flex h-full items-center will-change-transform"
-          style={{ width: `${PASOS.length * 100}vw` }}
-        >
+        {/* Stack */}
+        <div className="relative w-[min(480px,90vw)]" style={{ height: 'min(380px,55vh)' }}>
           {PASOS.map((paso, i) => (
-            <div
+            <StickyCard
               key={paso.n}
-              className="flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-24"
-            >
-              <div
-                className={`w-full relative ${
-                  paso.image
-                    ? 'max-w-5xl flex flex-col md:flex-row md:items-center gap-8 md:gap-12'
-                    : 'max-w-xl'
-                }`}
-              >
-                {paso.image && (
-                  <>
-                    <div className="w-full md:w-[42%] shrink-0 flex justify-center md:justify-start order-first">
-                      <ConexionImagen
-                        src={paso.image}
-                        alt="Conexión del equipo endoscópico con SIMED"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0 w-full relative">
-                      <PasoInfoFlipCard paso={paso} />
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-600 animate-pulse hidden md:block pointer-events-none">
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </>
-                )}
-                {!paso.image && (
-                <>
-                {/* Número grande decorativo */}
-                <div
-                  className="text-[8rem] md:text-[11rem] font-bold leading-none mb-4 select-none"
-                  style={{ color: paso.color, opacity: 0.08 }}
-                >
-                  {paso.n}
-                </div>
-
-                {/* Icono + contenido */}
-                <div className="border-l-2 pl-8 -mt-6" style={{ borderColor: paso.color }}>
-                  <div className="mb-5" style={{ color: paso.color }}>
-                    {paso.icon}
-                  </div>
-
-                  <h3 className="text-3xl md:text-5xl font-light text-white mb-5 leading-tight">
-                    {paso.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-6 max-w-md">
-                    {paso.text}
-                  </p>
-
-                  <ul className="space-y-2.5">
-                    {paso.features.map(f => (
-                      <li key={f} className="flex items-center gap-3 text-sm text-slate-400">
-                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: paso.color }} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Flecha siguiente */}
-                {i < PASOS.length - 1 && (
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-600 animate-pulse hidden md:block">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                )}
-                </>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Indicador de pasos */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-10">
-          {PASOS.map((p, i) => (
-            <div
-              key={i}
-              className="h-1 rounded-full transition-all duration-300"
-              style={{ width: 32, background: p.color, opacity: 0.4 }}
+              i={i}
+              total={N}
+              {...paso}
+              progress={progress}
             />
           ))}
         </div>
+
+        {/* Progress dots */}
+        <div className="absolute bottom-8 flex gap-2 z-20">
+          {PASOS.map((p, i) => (
+            <ProgressDot key={i} index={i} color={p.color} progress={progress} />
+          ))}
+        </div>
+
+        {/* Luces azules que dejan caminos de luz */}
+        <LightTrails />
       </div>
     </section>
+  )
+}
+
+function StickyCard({ i, total, n, title, text, features, color, icon, progress }) {
+  const [theme, setTheme] = useState('dark')
+  const topOffset   = (total - 1 - i) * STACK_OFFSET
+  const isStackable = i < total - 1
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme')
+      setTheme(currentTheme === 'light' ? 'light' : 'dark')
+    }
+    
+    checkTheme()
+    const observer = new MutationObserver(checkTheme)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    
+    return () => observer.disconnect()
+  }, [])
+
+  // Ranges for this card
+  const enterStart = i * SEG
+  const enterEnd   = enterStart + SEG * 0.5
+
+  const stackStart = (i + 1) * SEG
+  const stackEnd   = stackStart + SEG * 0.55
+
+  const tiltStart  = stackStart + SEG * 0.1
+  const tiltEnd    = tiltStart  + SEG * 0.55
+
+  const targetScale = Math.max(0.82, 1 - (total - i - 1) * 0.055)
+
+  // Raw MotionValues — start off-screen except card 0
+  const rawY       = useMotionValue(i === 0 ? topOffset : 600)
+  const rawScale   = useMotionValue(1)
+  const rawOpacity = useMotionValue(i === 0 ? 1 : 0)
+  const rawRot     = useMotionValue(0)
+  const rawTX      = useMotionValue(0)
+
+  useEffect(() => {
+    const unsubscribe = progress.on('change', (p) => {
+      // Y: slide up from below into resting position
+      rawY.set(remap(p, enterStart, enterEnd, 600, topOffset))
+
+      // Once entered, show it
+      if (p >= enterStart) rawOpacity.set(1)
+
+      // Stack effects only for cards that get buried
+      if (isStackable) {
+        rawScale.set(remap(p, stackStart, stackEnd, 1, targetScale))
+        rawRot.set(remap(p, tiltStart, tiltEnd, 0, REST_TILT[i].rot))
+        rawTX.set(remap(p, tiltStart, tiltEnd, 0, REST_TILT[i].tx))
+      }
+    })
+
+    return () => unsubscribe()
+  }, [])
+
+  const y       = useSpring(rawY,       SPRING)
+  const scale   = useSpring(rawScale,   SPRING)
+  const opacity = useSpring(rawOpacity, SPRING)
+  const rotate  = useSpring(rawRot,     SPRING)
+  const x       = useSpring(rawTX,      SPRING)
+
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        top: -topOffset,
+        y, scale, opacity, rotate, x,
+        zIndex: i + 1,
+        transformOrigin: 'top center',
+      }}
+    >
+      <div
+        className="w-full h-full rounded-2xl p-7 md:p-10 flex flex-col gap-5 relative overflow-hidden"
+        style={{
+          background: theme === 'light' 
+            ? 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' 
+            : 'linear-gradient(135deg, #0d1f3c 0%, #0a1628 100%)',
+          border: `1px solid ${theme === 'light' ? color : color}55`,
+          backdropFilter: 'blur(14px)',
+          boxShadow: theme === 'light'
+            ? `0 30px 80px rgba(0,0,0,.15), 0 0 0 1px rgba(0,0,0,.06)`
+            : `0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06)`,
+        }}
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-bold tracking-[.3em] uppercase" style={{ color }}>{n}</span>
+          <div className="h-px flex-1" style={{ background: `${color}44` }} />
+        </div>
+
+        <div className="flex items-start gap-4">
+          <div style={{ color }} className="shrink-0">{icon}</div>
+          <h3 className="text-2xl md:text-3xl font-light leading-snug" style={{ color: theme === 'light' ? '#1e293b' : 'white' }}>{title}</h3>
+        </div>
+
+        <p className="text-sm md:text-base leading-relaxed" style={{ color: theme === 'light' ? '#475569' : 'rgba(255,255,255,0.55)' }}>{text}</p>
+
+        <ul className="mt-auto space-y-2">
+          {features.map((f, fi) => (
+            <li key={fi} className="flex items-center gap-2 text-xs" style={{ color: theme === 'light' ? '#64748b' : 'rgba(255,255,255,0.45)' }}>
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: color }} />
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        <div
+          className="absolute -top-10 -right-10 w-44 h-44 rounded-full pointer-events-none"
+          style={{ background: `radial-gradient(circle,${color}22 0%,transparent 70%)` }}
+        />
+      </div>
+    </motion.div>
+  )
+}
+
+function ProgressDot({ index, color, progress }) {
+  const raw   = useMotionValue(0)
+  const scale = useSpring(raw, { stiffness: 120, damping: 20 })
+
+  useEffect(() => {
+    const unsubscribe = progress.on('change', (p) => {
+      raw.set(remap(p, index * SEG, (index + 1) * SEG, 0, 1))
+    })
+    return () => unsubscribe()
+  }, [])
+
+  return (
+    <motion.div
+      style={{ scale, backgroundColor: color }}
+      className="w-1.5 h-1.5 rounded-full opacity-70"
+    />
+  )
+}
+
+function LightTrails() {
+  const [lights, setLights] = useState([])
+
+  useEffect(() => {
+    const newLights = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 8 + 4,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 2,
+    }))
+    setLights(newLights)
+  }, [])
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {lights.map((light) => (
+        <motion.div
+          key={light.id}
+          className="absolute rounded-full"
+          style={{
+            width: light.size,
+            height: light.size,
+            background: 'rgba(33, 150, 243, 0.6)',
+            boxShadow: '0 0 20px rgba(33, 150, 243, 0.8), 0 0 40px rgba(33, 150, 243, 0.4)',
+            left: `${light.x}%`,
+            top: `${light.y}%`,
+          }}
+          animate={{
+            x: [0, Math.random() * 200 - 100],
+            y: [0, Math.random() * 300 - 150],
+            opacity: [0.3, 0.8, 0.3],
+          }}
+          transition={{
+            duration: light.duration,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            delay: light.delay,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+    </div>
   )
 }
