@@ -103,7 +103,7 @@ export default function Contacto() {
               <span style={styles.cursor}>|</span>
             </h1>
             <p className="subtext-hover" style={styles.subtext}>
-              Escr├¡benos, ll├ímanos o agenda una demostraci├│n de SIMED. Respondemos en menos de 24 horas h├íbiles.
+              Escríbenos, llámanos o agenda una demostración de SIMED. Respondemos en menos de 24 horas hábiles.
             </p>
             <button onClick={() => setShowOrg(true)} className="btn-secondary-hover" style={styles.btnSecondary}>
               Sobre nosotros
@@ -114,25 +114,25 @@ export default function Contacto() {
             <ActionCard
               icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>}
               title="Chat"
-              desc="Ayuda r├ípida y personalizada."
+              desc="Ayuda rápida y personalizada."
               link="mailto:licencias@clizalli.gob.mx"
               linkLabel="licencias@clizalli.gob.mx"
             />
             <ActionCard
               icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" /></svg>}
-              title="Tel├®fono"
+              title="Teléfono"
               desc="Contacta con un especialista."
               extras={
                 <>
                   <div className="phone-row-hover" style={styles.phoneRow}><span style={styles.phoneLabel}>Paciente</span><a href="tel:5512345678" className="action-link-hover" style={styles.actionLink}>55 1234 5678</a></div>
-                  <div className="phone-row-hover" style={styles.phoneRow}><span style={styles.phoneLabel}>Horario</span><span style={styles.phoneVal}>LunÔÇôVie 9ÔÇô18 h</span></div>
+                  <div className="phone-row-hover" style={styles.phoneRow}><span style={styles.phoneLabel}>Horario</span><span style={styles.phoneVal}>Lun–Vie 9–18 h</span></div>
                 </>
               }
             />
             <ActionCard
               icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>}
               title="Ayuda"
-              desc="Gu├¡as y respuestas paso a paso."
+              desc="Guías y respuestas paso a paso."
               link="mailto:licencias@clizalli.gob.mx"
               linkLabel="Contactar"
             />
@@ -150,10 +150,10 @@ export default function Contacto() {
           <div className="modal-box-hover" style={styles.modalBox} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
               <div>
-                <div style={styles.modalTitle}>┬┐Qu├® es Enclaii?</div>
-                <div style={styles.modalSub}>Plataforma m├®dica de siguiente generaci├│n</div>
+                <div style={styles.modalTitle}>¿Qué es Enclaii?</div>
+                <div style={styles.modalSub}>Plataforma médica de siguiente generación</div>
               </div>
-              <button onClick={() => setShowOrg(false)} className="modal-close-hover" style={styles.modalClose}>Ô£ò</button>
+              <button onClick={() => setShowOrg(false)} className="modal-close-hover" style={styles.modalClose}>✕</button>
             </div>
             <div style={styles.modalBody}>
               <div style={styles.modalLottie}>
@@ -161,13 +161,13 @@ export default function Contacto() {
               </div>
               <div style={styles.modalText}>
                 <p style={styles.modalDesc}>
-                  Enclaii es una plataforma web especializada en la gesti├│n y optimizaci├│n de tratamientos m├®dicos. Dise├▒ada bajo rigurosos est├índares de desarrollo e interfaz de usuario, la plataforma resuelve la desorganizaci├│n de los expedientes cl├¡nicos tradicionales, permitiendo a los especialistas automatizar el seguimiento de pacientes, centralizar historiales cl├¡nicos y garantizar decisiones m├®dicas m├ís precisas y oportunas.
+                  Enclaii es una plataforma web especializada en la gestión y optimización de tratamientos médicos. Diseñada bajo rigurosos estándares de desarrollo e interfaz de usuario, la plataforma resuelve la desorganización de los expedientes clínicos tradicionales, permitiendo a los especialistas automatizar el seguimiento de pacientes, centralizar historiales clínicos y garantizar decisiones médicas más precisas y oportunas.
                 </p>
                 <div style={styles.modalFeatures}>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Automatizaci├│n del seguimiento de pacientes</div>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Centralizaci├│n de historiales cl├¡nicos</div>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Decisiones m├®dicas precisas y oportunas</div>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Est├índares rigurosos de UI/UX m├®dico</div>
+                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Automatización del seguimiento de pacientes</div>
+                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Centralización de historiales clínicos</div>
+                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Decisiones médicas precisas y oportunas</div>
+                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Estándares rigurosos de UI/UX médico</div>
                 </div>
               </div>
             </div>
@@ -280,18 +280,18 @@ function MapCard() {
           </svg>
         </div>
         <div>
-          <div style={styles.locationCity}>Lerma, Estado de M├®xico</div>
-          <div style={styles.locationStreet}>19┬░23'25.6"N 99┬░32'44.0"W</div>
+          <div style={styles.locationCity}>Xonacatlan, Estado de Mexico  C.P. 52060</div>
+          <div style={styles.locationStreet}>C. Benito Juarez S/N, Col. La Jardona</div>
         </div>
-        <a href="https://www.google.com/maps?q=19.390443801879883,-99.54556274414062&z=17&hl=es" target="_blank" rel="noopener noreferrer" className="ext-link-hover" style={styles.extLink}>
+        <a href="https://www.google.com/maps?q=Calle+Benito+Juarez+S/N,+La+Jardona,+Xonacatlan,+Estado+de+Mexico,+52060" target="_blank" rel="noopener noreferrer" className="ext-link-hover" style={styles.extLink}>
           Ver mapa
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
       </div>
       <div style={styles.mapWrap}>
         <iframe
-          title="Ubicaci├│n"
-          src="https://maps.google.com/maps?q=19.390443801879883,-99.54556274414062&z=17&hl=es&output=embed"
+          title="Ubicacion"
+          src="https://maps.google.com/maps?q=Calle+Benito+Juarez+S/N,+La+Jardona,+Xonacatlan,+Estado+de+Mexico,+52060&output=embed"
           width="100%"
           height="180"
           style={{ border: 0, display: 'block', filter: 'invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85)' }}
