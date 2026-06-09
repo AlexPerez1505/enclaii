@@ -4,6 +4,7 @@ import AnimatedThemeToggler from './AnimatedThemeToggler'
 
 const links = [
   { href: '/#pilares',       label: 'Pilares' },
+  { href: '/#planes',        label: 'Planes' },
   { href: '/#como-funciona', label: 'Cómo funciona' },
   { href: '/#modulos',       label: 'Módulos' },
 ]
