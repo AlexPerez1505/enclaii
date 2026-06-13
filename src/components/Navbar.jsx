@@ -48,6 +48,11 @@ export default function Navbar() {
 
         .nav-link { color: var(--nav-text); transition: color .2s ease; }
         .nav-link:hover { color: var(--nav-hover); }
+
+        .nav-link-contact { color: #e2e8f0; transition: color .2s ease; }
+        .nav-link-contact:hover { color: #60a5fa; }
+        :root[data-theme="light"] .nav-link-contact { color: #1e293b; }
+        :root[data-theme="light"] .nav-link-contact:hover { color: #0284c7; }
         .nav-link::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px;
           background: var(--nav-hover); transition: width .3s ease; }
         .nav-link:hover::after { width:100%; }
@@ -103,7 +108,7 @@ export default function Navbar() {
             <Link to="/por-que" className="nav-link relative">¿Por qué SIMED?</Link>
           </li>
           <li>
-            <Link to="/contacto" className="nav-link relative">Contacto</Link>
+            <Link to="/contacto" className="nav-link-contact relative">Contacto</Link>
           </li>
         </ul>
 

@@ -103,10 +103,12 @@ export default function Pilares() {
         const VW = rect.width
         const VH = rect.height
 
+        const isMobile = VW < 768
+
         const CX = VW * 0.5
         const CY = VH * 0.52
-        const RX = VW * 0.34
-        const RY = VH * 0.34
+        const RX = isMobile ? Math.min(VW * 0.30, 130) : VW * 0.34
+        const RY = isMobile ? Math.min(VH * 0.24, 110) : VH * 0.34
 
         const OX = -220
         const OY = VH + 180
@@ -319,34 +321,34 @@ export default function Pilares() {
             src="/endoscopio-1.png"
             alt=""
             aria-hidden="true"
-            className="endo-orbit pointer-events-none absolute left-1/2 top-1/2 w-[520px] md:w-[660px] lg:w-[760px] select-none drop-shadow-[0_0_35px_rgba(33,150,243,0.28)]"
+            className="endo-orbit pointer-events-none absolute left-1/2 top-1/2 w-[280px] md:w-[520px] lg:w-[660px] xl:w-[760px] select-none drop-shadow-[0_0_35px_rgba(33,150,243,0.28)]"
           />
 
           <img
             src="/endoscopio-1.png"
             alt=""
             aria-hidden="true"
-            className="endo-orbit pointer-events-none absolute left-1/2 top-1/2 w-[500px] md:w-[620px] lg:w-[720px] scale-x-[-1] select-none drop-shadow-[0_0_35px_rgba(33,150,243,0.25)]"
+            className="endo-orbit pointer-events-none absolute left-1/2 top-1/2 w-[260px] md:w-[500px] lg:w-[620px] xl:w-[720px] scale-x-[-1] select-none drop-shadow-[0_0_35px_rgba(33,150,243,0.25)]"
           />
 
           <img
             src="/pc.png"
             alt="Plataforma médica ENCLAII"
-            className="pc-center pointer-events-none absolute left-1/2 top-1/2 w-[440px] md:w-[560px] lg:w-[680px] select-none drop-shadow-[0_0_55px_rgba(33,150,243,0.38)]"
+            className="pc-center pointer-events-none absolute left-1/2 top-1/2 w-[220px] md:w-[440px] lg:w-[560px] xl:w-[680px] select-none drop-shadow-[0_0_55px_rgba(33,150,243,0.38)]"
           />
 
           {pilares.map((p) => (
             <div
               key={p.title}
-              className="pilar-card absolute left-0 top-0 w-[260px] md:w-[320px] p-6 rounded-2xl
+              className="pilar-card absolute left-0 top-0 w-[180px] md:w-[260px] lg:w-[320px] p-4 md:p-6 rounded-xl md:rounded-2xl
               bg-gradient-to-b from-[#2196f3]/25 to-[#2196f3]/10
               border border-white/10 text-white shadow-2xl shadow-black/40 backdrop-blur-md"
             >
-              <h3 className="text-xl md:text-2xl font-semibold mb-4">
+              <h3 className="text-base md:text-xl lg:text-2xl font-semibold mb-2 md:mb-4">
                 {p.title}
               </h3>
 
-              <p className="text-sm md:text-base text-slate-300 leading-relaxed">
+              <p className="text-xs md:text-sm lg:text-base text-slate-300 leading-relaxed">
                 {p.description}
               </p>
             </div>
