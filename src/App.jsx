@@ -12,6 +12,7 @@ import ScrollStory from './components/ScrollStory'
 import ThreeHero from './components/ThreeHero'
 // import LottieScrub from './components/LottieScrub'
 import Pilares from './components/Pilares'
+import Planes from './components/Planes'
 import ComoFunciona from './components/ComoFunciona'
 import ScrubVideo from './components/ScrubVideo'
 import Modulos from './components/Modulos'
@@ -30,6 +31,7 @@ function Home() {
       <ScrollStory />
       <ThreeHero />
       <Pilares />
+      <Planes />
       {/* <LottieScrub /> */}
       <ComoFunciona />
       <ScrubVideo />
