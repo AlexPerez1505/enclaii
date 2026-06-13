@@ -54,7 +54,7 @@ export default function Contacto() {
   }, []);
 
   return (
-    <div style={styles.root}>
+    <div className="contacto-root" style={styles.root}>
       {/* Grid Background */}
       <div className="grid-background"></div>
       
@@ -76,24 +76,24 @@ export default function Contacto() {
 
         {/* LEFT */}
         <div style={{...styles.leftCol, opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s'}}>
-          <div className="badge-hover" style={styles.availableBadge}>
+          <div className="badge-hover contacto-badge" style={styles.availableBadge}>
             <span style={styles.dot} />
             Disponibles ahora
           </div>
           <div className="robot-hover" style={styles.robotContainer}>
             <div 
               ref={lottieRef}
-              style={{ width: 350, height: 350, filter: "drop-shadow(0 0 35px rgba(56,189,248,0.6))" }}
+              style={{ width: 440, height: 440, filter: "drop-shadow(0 0 35px rgba(56,189,248,0.6))" }}
             />
           </div>
-          <p className="response-note-hover" style={styles.responseNote}>Respuesta en menos de 24 h</p>
+          <p className="response-note-hover contacto-response" style={styles.responseNote}>Respuesta en menos de 24 h</p>
         </div>
 
         {/* RIGHT */}
         <div style={styles.rightCol}>
           <div style={{...styles.headlineBlock, opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s'}}>
-            <span className="label-hover" style={styles.label}>Contacto</span>
-            <h1 style={styles.headline}>
+            <span className="label-hover contacto-label" style={styles.label}>Contacto</span>
+            <h1 className="contacto-headline" style={styles.headline}>
               {typed.split('\n').map((line, li) => (
                 <span key={li}>
                   {li > 0 && <br />}
@@ -102,10 +102,10 @@ export default function Contacto() {
               ))}
               <span style={styles.cursor}>|</span>
             </h1>
-            <p className="subtext-hover" style={styles.subtext}>
+            <p className="subtext-hover contacto-subtext" style={styles.subtext}>
               Escríbenos, llámanos o agenda una demostración de SIMED. Respondemos en menos de 24 horas hábiles.
             </p>
-            <button onClick={() => setShowOrg(true)} className="btn-secondary-hover" style={styles.btnSecondary}>
+            <button onClick={() => setShowOrg(true)} className="btn-secondary-hover contacto-btn-secondary" style={styles.btnSecondary}>
               Sobre nosotros
             </button>
           </div>
@@ -124,8 +124,8 @@ export default function Contacto() {
               desc="Contacta con un especialista."
               extras={
                 <>
-                  <div className="phone-row-hover" style={styles.phoneRow}><span style={styles.phoneLabel}>Paciente</span><a href="tel:5512345678" className="action-link-hover" style={styles.actionLink}>55 1234 5678</a></div>
-                  <div className="phone-row-hover" style={styles.phoneRow}><span style={styles.phoneLabel}>Horario</span><span style={styles.phoneVal}>Lun–Vie 9–18 h</span></div>
+                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Paciente</span><a href="tel:5512345678" className="action-link-hover contacto-action-link" style={styles.actionLink}>55 1234 5678</a></div>
+                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Horario</span><span className="contacto-phone-val" style={styles.phoneVal}>Lun–Vie 9–18 h</span></div>
                 </>
               }
             />
@@ -147,27 +147,27 @@ export default function Contacto() {
       {/* Modal */}
       {showOrg && (
         <div style={{...styles.modalOverlay, opacity: 1, animation: 'fadeIn 0.3s ease-out'}} onClick={() => setShowOrg(false)}>
-          <div className="modal-box-hover" style={styles.modalBox} onClick={e => e.stopPropagation()}>
-            <div style={styles.modalHeader}>
+          <div className="modal-box-hover contacto-modal-box" style={styles.modalBox} onClick={e => e.stopPropagation()}>
+            <div className="contacto-modal-header" style={styles.modalHeader}>
               <div>
-                <div style={styles.modalTitle}>¿Qué es Enclaii?</div>
-                <div style={styles.modalSub}>Plataforma médica de siguiente generación</div>
+                <div className="contacto-modal-title" style={styles.modalTitle}>¿Qué es Enclaii?</div>
+                <div className="contacto-modal-sub" style={styles.modalSub}>Plataforma médica de siguiente generación</div>
               </div>
-              <button onClick={() => setShowOrg(false)} className="modal-close-hover" style={styles.modalClose}>✕</button>
+              <button onClick={() => setShowOrg(false)} className="modal-close-hover contacto-modal-close" style={styles.modalClose}>✕</button>
             </div>
             <div style={styles.modalBody}>
               <div style={styles.modalLottie}>
                 <ThinkingDoctorLottie />
               </div>
               <div style={styles.modalText}>
-                <p style={styles.modalDesc}>
+                <p className="contacto-modal-desc" style={styles.modalDesc}>
                   Enclaii es una plataforma web especializada en la gestión y optimización de tratamientos médicos. Diseñada bajo rigurosos estándares de desarrollo e interfaz de usuario, la plataforma resuelve la desorganización de los expedientes clínicos tradicionales, permitiendo a los especialistas automatizar el seguimiento de pacientes, centralizar historiales clínicos y garantizar decisiones médicas más precisas y oportunas.
                 </p>
                 <div style={styles.modalFeatures}>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Automatización del seguimiento de pacientes</div>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Centralización de historiales clínicos</div>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Decisiones médicas precisas y oportunas</div>
-                  <div style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Estándares rigurosos de UI/UX médico</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Automatización del seguimiento de pacientes</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Centralización de historiales clínicos</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Decisiones médicas precisas y oportunas</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Estándares rigurosos de UI/UX médico</div>
                 </div>
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function Contacto() {
         @keyframes rotateCircle { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
         .badge-hover:hover { transform: scale(1.05); }
         .robot-hover:hover { transform: scale(1.05); }
-        .btn-secondary-hover:hover { border-color: #1d4ed8; color: #38BDF8; box-shadow: 0 0 30px rgba(29,78,216,0.4); }
+        .btn-secondary-hover:hover { border-color: #7dd3fc; color: #ffffff; background: rgba(255,255,255,0.15); box-shadow: 0 0 20px rgba(125,211,252,0.3); }
         .action-card-hover:hover { border-color: #2563eb; transform: translateY(-4px); box-shadow: 0 8px 32px rgba(37,99,235,0.4); }
         .action-icon-hover:hover { transform: scale(1.15) rotate(5deg); transition: all 0.3s ease; }
         .action-link-hover:hover { color: #7dd3fc; text-decoration: underline; }
@@ -237,6 +237,76 @@ export default function Contacto() {
         @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
         @keyframes wordIn { 0%{opacity:0;transform:translateY(18px)} 100%{opacity:1;transform:translateY(0)} }
         .word-anim { display:inline-block; opacity:0; animation: wordIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+        /* ── TEMA CLARO ─────────────────────────────────────────────── */
+        :root[data-theme="light"] .contacto-root {
+          background: #f1f5f9 !important;
+          color: #0f172a !important;
+        }
+        :root[data-theme="light"] .grid-background {
+          display: none !important;
+        }
+        :root[data-theme="light"] .floating-nodes {
+          display: none !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-headline { color: #0f172a !important; }
+        :root[data-theme="light"] .contacto-root .contacto-headline span span {
+          background: linear-gradient(90deg, #0284c7, #7c3aed, #db2777, #0284c7) !important;
+          background-size: 300% auto !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          background-clip: text !important;
+          filter: none !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-label { color: #0284c7 !important; font-weight: 700 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-subtext { color: #1e293b !important; }
+        :root[data-theme="light"] .contacto-root .contacto-badge { color: #0f172a !important; font-weight: 600 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-response { color: #475569 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-action-card {
+          background: #ffffff !important;
+          border-color: #e2e8f0 !important;
+          box-shadow: 0 2px 12px rgba(15,23,42,0.08) !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-action-title { color: #0f172a !important; font-weight: 700 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-action-desc { color: #334155 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-action-link { color: #0284c7 !important; font-weight: 600 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-phone-label { color: #475569 !important; font-weight: 600 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-phone-val { color: #1e293b !important; }
+        :root[data-theme="light"] .contacto-root .contacto-location-card {
+          background: #ffffff !important;
+          border-color: #e2e8f0 !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-location-city { color: #0f172a !important; font-weight: 700 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-location-street { color: #334155 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-location-icon-box {
+          background: #f8fafc !important;
+          border-color: #e2e8f0 !important;
+          color: #334155 !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-ext-link { color: #64748b !important; border-color: #e2e8f0 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-btn-secondary {
+          background: rgba(15,23,42,0.06) !important;
+          border-color: rgba(15,23,42,0.2) !important;
+          color: #334155 !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-modal-box {
+          background: #ffffff !important;
+          border-color: #e2e8f0 !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-modal-title { color: #0f172a !important; font-weight: 700 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-modal-sub { color: #0284c7 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-modal-header { border-color: #e2e8f0 !important; }
+        :root[data-theme="light"] .contacto-root .contacto-modal-close {
+          border-color: #e2e8f0 !important;
+          color: #475569 !important;
+        }
+        :root[data-theme="light"] .contacto-root .contacto-modal-desc { color: #1e293b !important; }
+        :root[data-theme="light"] .contacto-root .contacto-modal-feature-item { color: #0f172a !important; font-weight: 500 !important; }
+        :root[data-theme="light"] .contacto-root iframe {
+          filter: none !important;
+        }
+        :root[data-theme="light"] .action-card-hover:hover { border-color: #0284c7 !important; box-shadow: 0 8px 24px rgba(2,132,199,0.2) !important; }
+        :root[data-theme="light"] .btn-secondary-hover:hover { border-color: #0284c7 !important; color: #0284c7 !important; background: rgba(2,132,199,0.08) !important; }
       ` }} />
     </div>
   );
@@ -260,11 +330,11 @@ function ThinkingDoctorLottie() {
 
 function ActionCard({ icon, title, desc, link, linkLabel, extras }) {
   return (
-    <div className="action-card-hover" style={styles.actionCard}>
+    <div className="action-card-hover contacto-action-card" style={styles.actionCard}>
       <div className="action-icon-hover" style={styles.actionIcon}>{icon}</div>
-      <div style={styles.actionTitle}>{title}</div>
-      <div style={styles.actionDesc}>{desc}</div>
-      {link && <a href={link} className="action-link-hover" style={styles.actionLink}>{linkLabel}</a>}
+      <div className="contacto-action-title" style={styles.actionTitle}>{title}</div>
+      <div className="contacto-action-desc" style={styles.actionDesc}>{desc}</div>
+      {link && <a href={link} className="action-link-hover contacto-action-link" style={styles.actionLink}>{linkLabel}</a>}
       {extras}
     </div>
   );
@@ -272,18 +342,18 @@ function ActionCard({ icon, title, desc, link, linkLabel, extras }) {
 
 function MapCard() {
   return (
-    <div className="location-card-hover" style={styles.locationCard}>
+    <div className="location-card-hover contacto-location-card" style={styles.locationCard}>
       <div style={styles.locationHeader}>
-        <div className="location-icon-box-hover" style={styles.locationIconBox}>
+        <div className="location-icon-box-hover contacto-location-icon-box" style={styles.locationIconBox}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 21s-7-5.2-7-11a7 7 0 1114 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>
           </svg>
         </div>
         <div>
-          <div style={styles.locationCity}>Xonacatlan, Estado de Mexico  C.P. 52060</div>
-          <div style={styles.locationStreet}>C. Benito Juarez S/N, Col. La Jardona</div>
+          <div className="contacto-location-city" style={styles.locationCity}>Xonacatlan, Estado de Mexico  C.P. 52060</div>
+          <div className="contacto-location-street" style={styles.locationStreet}>C. Benito Juarez S/N, Col. La Jardona</div>
         </div>
-        <a href="https://www.google.com/maps?q=Calle+Benito+Juarez+S/N,+La+Jardona,+Xonacatlan,+Estado+de+Mexico,+52060" target="_blank" rel="noopener noreferrer" className="ext-link-hover" style={styles.extLink}>
+        <a href="https://www.google.com/maps?q=Calle+Benito+Juarez+S/N,+La+Jardona,+Xonacatlan,+Estado+de+Mexico,+52060" target="_blank" rel="noopener noreferrer" className="ext-link-hover contacto-ext-link" style={styles.extLink}>
           Ver mapa
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
@@ -323,12 +393,13 @@ const styles = {
     animationFillMode: 'forwards',
   },
   gradientText: {
-    background: 'linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8)',
-    backgroundSize: '200% auto',
+    background: 'linear-gradient(90deg, #00d4ff, #7c3aed, #f0abfc, #00d4ff)',
+    backgroundSize: '300% auto',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
-    animation: 'gradientShift 3s linear infinite',
+    animation: 'gradientShift 2.5s linear infinite',
+    filter: 'drop-shadow(0 0 12px rgba(0,212,255,0.5))',
   },
   cursor: {
     display: 'inline-block',
@@ -348,24 +419,24 @@ const styles = {
   },
   container: {
     display: "flex",
-    gap: 64,
+    gap: 80,
     alignItems: "center",
-    maxWidth: 1060,
+    maxWidth: 1300,
     width: "100%",
-    padding: "60px 32px",
+    padding: "80px 48px",
   },
   leftCol: {
-    flex: "0 0 320px",
+    flex: "0 0 420px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 12,
+    gap: 16,
   },
   availableBadge: {
     display: "flex",
     alignItems: "center",
-    gap: 7,
-    fontSize: 12,
+    gap: 8,
+    fontSize: 14,
     color: "#475569",
     letterSpacing: "0.04em",
   },
@@ -390,7 +461,7 @@ const styles = {
     animation: "dotBlink 2s ease-in-out infinite",
   },
   responseNote: {
-    fontSize: 12,
+    fontSize: 14,
     color: "#1e293b",
     margin: 0,
     letterSpacing: "0.03em",
@@ -399,23 +470,23 @@ const styles = {
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    gap: 28,
+    gap: 36,
   },
   headlineBlock: {
     display: "flex",
     flexDirection: "column",
-    gap: 14,
+    gap: 18,
   },
   label: {
-    fontSize: 11,
+    fontSize: 13,
     color: "#1e293b",
     letterSpacing: "0.15em",
     textTransform: "uppercase",
   },
   headline: {
-    fontWeight: 500,
-    fontSize: 32,
-    lineHeight: 1.25,
+    fontWeight: 700,
+    fontSize: 58,
+    lineHeight: 1.15,
     margin: 0,
     color: "#e2e8f0",
   },
@@ -427,22 +498,22 @@ const styles = {
     animation: "textGlow 3s ease-in-out infinite",
   },
   subtext: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#334155",
     lineHeight: 1.75,
     margin: 0,
-    maxWidth: 380,
+    maxWidth: 520,
   },
   btnSecondary: {
     display: "inline-flex",
     alignItems: "center",
-    gap: 6,
-    background: "transparent",
-    border: "1px solid #1e293b",
-    borderRadius: 8,
-    color: "#475569",
-    fontSize: 13,
-    padding: "8px 16px",
+    gap: 8,
+    background: "rgba(255,255,255,0.08)",
+    border: "1px solid rgba(255,255,255,0.3)",
+    borderRadius: 10,
+    color: "#e2e8f0",
+    fontSize: 15,
+    padding: "10px 22px",
     cursor: "pointer",
     width: "fit-content",
   },
@@ -457,16 +528,16 @@ const styles = {
   actionGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(3,1fr)",
-    gap: 10,
+    gap: 16,
   },
   actionCard: {
     background: "rgba(5, 17, 38, 0.75)",
     border: "1px solid #112E5A",
-    borderRadius: 10,
-    padding: "16px 14px",
+    borderRadius: 14,
+    padding: "22px 20px",
     display: "flex",
     flexDirection: "column",
-    gap: 6,
+    gap: 10,
     boxShadow: "0 0 25px rgba(17, 46, 90, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
   },
   actionCardHover: {
@@ -483,20 +554,20 @@ const styles = {
     filter: "drop-shadow(0 0 8px rgba(56,189,248,0.6))",
   },
   actionTitle: {
-    fontSize: 13,
-    fontWeight: 500,
+    fontSize: 16,
+    fontWeight: 600,
     color: "#38BDF8",
   },
   actionDesc: {
-    fontSize: 11,
+    fontSize: 13,
     color: "#38BDF8",
-    lineHeight: 1.5,
+    lineHeight: 1.6,
   },
   actionLink: {
-    fontSize: 11,
+    fontSize: 13,
     color: "#38BDF8",
     textDecoration: "none",
-    marginTop: 2,
+    marginTop: 4,
   },
   actionLinkHover: {
     transition: "all 0.2s ease",
@@ -511,11 +582,11 @@ const styles = {
     alignItems: "baseline",
   },
   phoneLabel: {
-    fontSize: 10,
+    fontSize: 12,
     color: "#38BDF8",
   },
   phoneVal: {
-    fontSize: 11,
+    fontSize: 13,
     color: "#38BDF8",
   },
   locationCard: {
@@ -535,12 +606,12 @@ const styles = {
   locationHeader: {
     display: "flex",
     alignItems: "center",
-    gap: 10,
-    padding: "12px 16px",
+    gap: 14,
+    padding: "16px 20px",
   },
   locationIconBox: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     flexShrink: 0,
     background: "#060d18",
     border: "1px solid #1e293b",
@@ -552,26 +623,26 @@ const styles = {
     filter: "drop-shadow(0 0 8px rgba(56,189,248,0.6))",
   },
   locationCity: {
-    fontSize: 13,
-    fontWeight: 500,
+    fontSize: 15,
+    fontWeight: 600,
     color: "#38BDF8",
   },
   locationStreet: {
-    fontSize: 11,
+    fontSize: 13,
     color: "#38BDF8",
-    marginTop: 1,
+    marginTop: 2,
   },
   extLink: {
     marginLeft: "auto",
     display: "flex",
     alignItems: "center",
-    gap: 4,
-    fontSize: 11,
+    gap: 6,
+    fontSize: 13,
     color: "#38BDF8",
     textDecoration: "none",
-    padding: "4px 8px",
+    padding: "6px 12px",
     border: "1px solid #1e293b",
-    borderRadius: 5,
+    borderRadius: 7,
     flexShrink: 0,
     transition: "all 0.2s ease",
   },
@@ -583,7 +654,7 @@ const styles = {
   },
   mapWrap: {
     position: "relative",
-    height: 180,
+    height: 220,
     overflow: "hidden",
   },
   mapPlaceholder: {
@@ -627,14 +698,14 @@ const styles = {
     borderBottom: "1px solid #1e293b",
   },
   modalTitle: {
-    fontSize: 16,
-    fontWeight: 500,
+    fontSize: 20,
+    fontWeight: 600,
     color: "#38BDF8",
   },
   modalSub: {
-    fontSize: 11,
+    fontSize: 13,
     color: "#38BDF8",
-    marginTop: 3,
+    marginTop: 4,
   },
   modalClose: {
     background: "transparent",
@@ -683,7 +754,7 @@ const styles = {
     gap: 16,
   },
   modalDesc: {
-    fontSize: 14,
+    fontSize: 15,
     color: "#94a3b8",
     lineHeight: 1.8,
     margin: 0,
@@ -691,13 +762,13 @@ const styles = {
   modalFeatures: {
     display: "flex",
     flexDirection: "column",
-    gap: 8,
+    gap: 12,
   },
   modalFeatureItem: {
     display: "flex",
     alignItems: "center",
-    gap: 8,
-    fontSize: 13,
+    gap: 10,
+    fontSize: 15,
     color: "#cbd5e1",
   },
   modalFeatureDot: {
