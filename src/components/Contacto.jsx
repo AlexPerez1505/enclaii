@@ -21,6 +21,7 @@ const FULL_TEXT = 'Hablemos de tu\nservicio de endoscopia';
 
 export default function Contacto() {
   const [showOrg, setShowOrg] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [typed, setTyped] = useState('');
   const lottieRef = useRef(null);
@@ -83,7 +84,7 @@ export default function Contacto() {
           <div className="robot-hover" style={styles.robotContainer}>
             <div 
               ref={lottieRef}
-              style={{ width: 440, height: 440, filter: "drop-shadow(0 0 35px rgba(56,189,248,0.6))" }}
+              style={{ width: 480, height: 480, filter: "drop-shadow(0 0 40px rgba(56,189,248,0.7))" }}
             />
           </div>
           <p className="response-note-hover contacto-response" style={styles.responseNote}>Respuesta en menos de 24 h</p>
@@ -110,32 +111,36 @@ export default function Contacto() {
             </button>
           </div>
 
-          <div style={{...styles.actionGrid, opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s'}}>
-            <ActionCard
-              icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>}
-              title="Chat"
-              desc="Ayuda rápida y personalizada."
-              link="mailto:licencias@clizalli.gob.mx"
-              linkLabel="licencias@clizalli.gob.mx"
-            />
-            <ActionCard
-              icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" /></svg>}
-              title="Teléfono"
-              desc="Contacta con un especialista."
-              extras={
-                <>
-                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Paciente</span><a href="tel:5512345678" className="action-link-hover contacto-action-link" style={styles.actionLink}>55 1234 5678</a></div>
-                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Horario</span><span className="contacto-phone-val" style={styles.phoneVal}>Lun–Vie 9–18 h</span></div>
-                </>
-              }
-            />
-            <ActionCard
-              icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>}
-              title="Ayuda"
-              desc="Guías y respuestas paso a paso."
-              link="mailto:licencias@clizalli.gob.mx"
-              linkLabel="Contactar"
-            />
+          <div style={{...styles.contactStrip, opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s'}}>
+            {/* Chat */}
+            <div style={styles.contactItem}>
+              <div style={styles.contactItemAccent} />
+              <div style={styles.contactItemBody}>
+                <div className="contacto-action-title" style={styles.actionTitle}>Chat</div>
+                <div className="contacto-action-desc" style={styles.actionDesc}>Ayuda rápida y personalizada.</div>
+                <a href="mailto:licencias@clizalli.gob.mx" className="action-link-hover contacto-action-link" style={{...styles.actionLink, marginTop: 4}}>licencias@clizalli.gob.mx</a>
+              </div>
+            </div>
+            {/* Teléfono */}
+            <div style={styles.contactItem}>
+              <div style={styles.contactItemAccent} />
+              <div style={styles.contactItemBody}>
+                <div className="contacto-action-title" style={styles.actionTitle}>Teléfono</div>
+                <div className="contacto-action-desc" style={styles.actionDesc}>Contacta con un especialista.</div>
+                <div style={{display:'flex', flexDirection:'column', gap:4, marginTop:4}}>
+                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Paciente&nbsp;</span><a href="tel:5512345678" className="action-link-hover contacto-action-link" style={styles.actionLink}>55 1234 5678</a></div>
+                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Horario&nbsp;</span><span className="contacto-phone-val" style={styles.phoneVal}>Lun–Vie 9–18 h</span></div>
+                </div>
+              </div>
+            </div>
+            {/* Ayuda */}
+            <div style={styles.contactItem}>
+              <div style={styles.contactItemAccent} />
+              <div style={styles.contactItemBody}>
+                <div className="contacto-action-title" style={styles.actionTitle}>Ayuda</div>
+                <div className="contacto-action-desc" style={styles.actionDesc}>Guías y respuestas paso a paso.</div>
+              </div>
+            </div>
           </div>
 
           <div style={{opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s'}}>
@@ -144,7 +149,39 @@ export default function Contacto() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal Ayuda */}
+      {showHelp && (
+        <div style={{...styles.modalOverlay, opacity: 1, animation: 'fadeIn 0.3s ease-out'}} onClick={() => setShowHelp(false)}>
+          <div className="modal-box-hover contacto-modal-box" style={styles.modalBox} onClick={e => e.stopPropagation()}>
+            <div className="contacto-modal-header" style={styles.modalHeader}>
+              <div>
+                <div className="contacto-modal-title" style={styles.modalTitle}>Centro de Ayuda</div>
+                <div className="contacto-modal-sub" style={styles.modalSub}>Guías y respuestas frecuentes</div>
+              </div>
+              <button onClick={() => setShowHelp(false)} className="modal-close-hover contacto-modal-close" style={styles.modalClose}>✕</button>
+            </div>
+            <div style={styles.modalBody}>
+              <div style={styles.modalText}>
+                <p className="contacto-modal-desc" style={styles.modalDesc}>
+                  Encuentra respuestas rápidas a las preguntas más comunes sobre SIMED y nuestros servicios. Si no encuentras lo que buscas, contáctanos directamente.
+                </p>
+                <div style={styles.modalFeatures}>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>¿Cómo solicitar una demostración de SIMED?</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>¿Cuáles son los requisitos para implementar la plataforma?</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>¿Cómo migrar expedientes clínicos existentes?</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Soporte técnico y tiempos de respuesta</div>
+                </div>
+                <a href="mailto:licencias@clizalli.gob.mx" style={{...styles.extLink, marginLeft: 0, marginTop: 8}}>
+                  Enviar consulta
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Org */}
       {showOrg && (
         <div style={{...styles.modalOverlay, opacity: 1, animation: 'fadeIn 0.3s ease-out'}} onClick={() => setShowOrg(false)}>
           <div className="modal-box-hover contacto-modal-box" style={styles.modalBox} onClick={e => e.stopPropagation()}>
@@ -244,7 +281,9 @@ export default function Contacto() {
           color: #0f172a !important;
         }
         :root[data-theme="light"] .grid-background {
-          display: none !important;
+          background-image: linear-gradient(rgba(2,132,199,0.12) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(2,132,199,0.12) 1px, transparent 1px) !important;
+          background-size: 50px 50px !important;
         }
         :root[data-theme="light"] .floating-nodes {
           display: none !important;
@@ -342,33 +381,24 @@ function ActionCard({ icon, title, desc, link, linkLabel, extras }) {
 
 function MapCard() {
   return (
-    <div className="location-card-hover contacto-location-card" style={styles.locationCard}>
-      <div style={styles.locationHeader}>
-        <div className="location-icon-box-hover contacto-location-icon-box" style={styles.locationIconBox}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 21s-7-5.2-7-11a7 7 0 1114 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>
-          </svg>
+    <div style={styles.mapCardWrap}>
+      <div style={{flex: 1}}>
+        <div style={{marginBottom: 10}}>
+          <div className="contacto-location-city" style={styles.locationCity}>Ubicación</div>
+          <div className="contacto-location-street" style={styles.locationStreet}>Estado de México, México</div>
         </div>
-        <div>
-          <div className="contacto-location-city" style={styles.locationCity}>Xonacatlan, Estado de Mexico  C.P. 52060</div>
-          <div className="contacto-location-street" style={styles.locationStreet}>C. Benito Juarez S/N, Col. La Jardona</div>
+        <div style={styles.mapWrap}>
+          <iframe
+            title="Ubicacion"
+            src="https://maps.google.com/maps?q=Calle+Benito+Juarez+S/N,+La+Jardona,+Xonacatlan,+Estado+de+Mexico,+52060&output=embed"
+            width="100%"
+            height="180"
+            style={{ border: 0, display: 'block', borderRadius: 10, filter: 'invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85)' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
-        <a href="https://www.google.com/maps?q=Calle+Benito+Juarez+S/N,+La+Jardona,+Xonacatlan,+Estado+de+Mexico,+52060" target="_blank" rel="noopener noreferrer" className="ext-link-hover contacto-ext-link" style={styles.extLink}>
-          Ver mapa
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-      </div>
-      <div style={styles.mapWrap}>
-        <iframe
-          title="Ubicacion"
-          src="https://maps.google.com/maps?q=Calle+Benito+Juarez+S/N,+La+Jardona,+Xonacatlan,+Estado+de+Mexico,+52060&output=embed"
-          width="100%"
-          height="180"
-          style={{ border: 0, display: 'block', filter: 'invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85)' }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
       </div>
     </div>
   );
@@ -393,13 +423,13 @@ const styles = {
     animationFillMode: 'forwards',
   },
   gradientText: {
-    background: 'linear-gradient(90deg, #00d4ff, #7c3aed, #f0abfc, #00d4ff)',
+    background: 'linear-gradient(90deg, #00e5ff, #a855f7, #ff6edf, #00e5ff)',
     backgroundSize: '300% auto',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
     animation: 'gradientShift 2.5s linear infinite',
-    filter: 'drop-shadow(0 0 12px rgba(0,212,255,0.5))',
+    filter: 'drop-shadow(0 0 18px rgba(0,229,255,0.7))',
   },
   cursor: {
     display: 'inline-block',
@@ -430,7 +460,9 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
     gap: 16,
+    marginLeft: -60,
   },
   availableBadge: {
     display: "flex",
@@ -499,7 +531,7 @@ const styles = {
   },
   subtext: {
     fontSize: 16,
-    color: "#334155",
+    color: "#ffffff",
     lineHeight: 1.75,
     margin: 0,
     maxWidth: 520,
@@ -529,6 +561,53 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "repeat(3,1fr)",
     gap: 16,
+  },
+  mapCardWrap: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "stretch",
+    gap: 0,
+  },
+  contactStrip: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    gap: 0,
+  },
+  contactItem: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "stretch",
+    paddingRight: 28,
+  },
+  contactItemAccent: {
+    width: 3,
+    borderRadius: 4,
+    background: "linear-gradient(180deg, #00e5ff 0%, #7c3aed 100%)",
+    marginRight: 16,
+    flexShrink: 0,
+    minHeight: "100%",
+  },
+  contactItemBody: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 6,
+    paddingTop: 2,
+  },
+  helpBtn: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "rgba(56,189,248,0.12)",
+    border: "1px solid #38bdf8",
+    borderRadius: 10,
+    color: "#38bdf8",
+    fontSize: 14,
+    fontWeight: 600,
+    padding: "10px 22px",
+    textDecoration: "none",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+    letterSpacing: "0.04em",
   },
   actionCard: {
     background: "rgba(5, 17, 38, 0.75)",
@@ -560,12 +639,12 @@ const styles = {
   },
   actionDesc: {
     fontSize: 13,
-    color: "#38BDF8",
+    color: "#ffffff",
     lineHeight: 1.6,
   },
   actionLink: {
     fontSize: 13,
-    color: "#38BDF8",
+    color: "#ffffff",
     textDecoration: "none",
     marginTop: 4,
   },
@@ -583,11 +662,11 @@ const styles = {
   },
   phoneLabel: {
     fontSize: 12,
-    color: "#38BDF8",
+    color: "#ffffff",
   },
   phoneVal: {
     fontSize: 13,
-    color: "#38BDF8",
+    color: "#ffffff",
   },
   locationCard: {
     background: "rgba(5, 17, 38, 0.75)",
@@ -629,7 +708,7 @@ const styles = {
   },
   locationStreet: {
     fontSize: 13,
-    color: "#38BDF8",
+    color: "#ffffff",
     marginTop: 2,
   },
   extLink: {
