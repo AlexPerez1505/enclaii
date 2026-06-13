@@ -92,22 +92,6 @@ export default function Hero() {
           playsInline
           className="absolute inset-0 h-full w-full object-cover object-[36%_center] opacity-95"
         />
-        {isLight && (
-          <img
-            src="/tapa.png"
-            alt=""
-            aria-hidden="true"
-            className="absolute bottom-[11vh] right-[4vw] w-[62px] md:w-[76px] lg:w-[88px] select-none opacity-95"
-          />
-        )}
-        {!isLight && (
-          <img
-            src="/tapa-azul.png"
-            alt=""
-            aria-hidden="true"
-            className="absolute bottom-[12vh] right-[3.5vw] w-[62px] md:w-[76px] lg:w-[88px] select-none opacity-100 [mask-image:radial-gradient(ellipse_at_center,black_76%,transparent_96%)]"
-          />
-        )}
       </div>
 
       <div ref={orb1Ref} className="absolute inset-0 will-change-transform pointer-events-none">
@@ -138,9 +122,9 @@ export default function Hero() {
       <div className={isLight ? "absolute inset-y-0 left-0 z-[1] w-3/5 bg-gradient-to-r from-white/96 via-white/72 to-transparent pointer-events-none" : "absolute inset-y-0 left-0 z-[1] w-3/5 bg-gradient-to-r from-[#050d1f]/94 via-[#050d1f]/66 to-transparent pointer-events-none"} />
       <div className={isLight ? "absolute inset-y-0 right-0 z-[1] w-2/5 bg-gradient-to-l from-white/36 to-transparent pointer-events-none" : "absolute inset-y-0 right-0 z-[1] w-2/5 bg-gradient-to-l from-[#050d1f]/36 to-transparent pointer-events-none"} />
 
-      <div className="hero-content-inner relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-10">
-        <div className="relative h-[calc(100vh-8rem)] min-h-[560px]">
-          <div className="absolute left-0 top-[45%] w-full max-w-[620px] -translate-y-1/2 text-center lg:text-left">
+      <div className="hero-content-inner relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 pt-20 md:pt-24 pb-6 md:pb-10">
+        <div className="relative h-auto md:h-[calc(100vh-8rem)] min-h-auto md:min-h-[560px] flex flex-col md:block">
+          <div className="relative md:absolute md:left-0 md:top-[45%] w-full max-w-[620px] md:-translate-y-1/2 text-center lg:text-left">
             <span className="hero-line mb-4 inline-block text-xs font-semibold uppercase tracking-[0.32em] text-[#60a5fa]">
               Plataforma clinica inteligente
             </span>
@@ -181,15 +165,15 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className={isLight ? "absolute bottom-6 right-0 grid w-full max-w-lg grid-cols-3 gap-4 border-t border-slate-300/70 pt-6" : "absolute bottom-6 right-0 grid w-full max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-6"}>
+          <div className={isLight ? "relative md:absolute mt-8 md:mt-0 md:bottom-6 md:right-0 grid w-full max-w-lg grid-cols-3 gap-3 md:gap-4 border-t border-slate-300/70 pt-4 md:pt-6" : "relative md:absolute mt-8 md:mt-0 md:bottom-6 md:right-0 grid w-full max-w-lg grid-cols-3 gap-3 md:gap-4 border-t border-white/10 pt-4 md:pt-6"}>
             {[
               { value: 'Nube', label: 'Estudios disponibles' },
               { value: 'IA', label: 'Apoyo diagnostico' },
               { value: 'DICOM', label: 'Flujo compatible' },
             ].map(s => (
-              <div key={s.label} className="hero-stat">
-                <div className="text-xl md:text-2xl font-bold text-[#60a5fa] mb-1">{s.value}</div>
-                <div className={isLight ? "text-[10px] md:text-xs text-slate-600 uppercase tracking-widest leading-relaxed" : "text-[10px] md:text-xs text-slate-400 uppercase tracking-widest leading-relaxed"}>{s.label}</div>
+              <div key={s.label} className="hero-stat text-center md:text-left">
+                <div className="text-lg md:text-xl lg:text-2xl font-bold text-[#60a5fa] mb-1">{s.value}</div>
+                <div className={isLight ? "text-[9px] md:text-[10px] lg:text-xs text-slate-600 uppercase tracking-wider md:tracking-widest leading-relaxed" : "text-[9px] md:text-[10px] lg:text-xs text-slate-400 uppercase tracking-wider md:tracking-widest leading-relaxed"}>{s.label}</div>
               </div>
             ))}
           </div>
