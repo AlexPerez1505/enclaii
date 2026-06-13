@@ -76,18 +76,20 @@ export default function Navbar() {
             src="/logo.png"
             alt="ENCLAII"
             className={`logo-dark w-auto transition-all duration-500 object-contain
-              group-hover:drop-shadow-[0_0_24px_rgba(33,150,243,0.9)]
+              drop-shadow-[0_0_16px_rgba(33,150,243,0.55)]
+              group-hover:drop-shadow-[0_0_32px_rgba(33,150,243,1)]
               group-hover:scale-105
-              ${scrolled ? 'h-16' : 'h-24'}`}
+              ${scrolled ? 'h-20' : 'h-28'}`}
           />
           {/* Logo para fondo claro/blanco */}
           <img
             src="/logoblanco.png"
             alt="ENCLAII"
             className={`logo-light w-auto transition-all duration-500 object-contain
-              group-hover:drop-shadow-[0_0_24px_rgba(33,150,243,0.5)]
+              drop-shadow-[0_0_12px_rgba(2,132,199,0.4)]
+              group-hover:drop-shadow-[0_0_28px_rgba(2,132,199,0.8)]
               group-hover:scale-105
-              ${scrolled ? 'h-16' : 'h-24'}`}
+              ${scrolled ? 'h-20' : 'h-28'}`}
           />
         </Link>
 

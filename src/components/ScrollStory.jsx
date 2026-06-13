@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -6,9 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const CHAPTERS = [
   {
     num: '01',
-    tag: 'El problema',
-    title: 'Los estudios quedan\natrapados en sistemas\nfragmentados',
-    text: 'Los equipos de endoscopia generan imágenes y video que terminan en servidores locales, CDs o sistemas incompatibles entre sí. El especialista pierde tiempo valioso buscando antecedentes y los pacientes esperan.',
+    tag: 'Todo en linea',
+    title: 'Los estudios quedan\ndisponibles\nen la pagina web',
+    text: 'Los equipos de endoscopia generan imágenes y video que terminan en servidores de la nube, Donde se puede acceder a los registros de pacientes, estudios, informes y desde ahi puedas editar, borrar o incluso mandar sus estudios a pacientes sin necesidad de estar en la computadora local',
     accent: '#ef4444',
     bg: 'radial-gradient(ellipse 70% 60% at 20% 50%, rgba(239,68,68,0.12) 0%, transparent 70%)',
     visual: <Visual1 />,
@@ -33,7 +33,7 @@ const CHAPTERS = [
   },
   {
     num: '04',
-    tag: 'El resultado',
+    tag: 'El resultado: Reporte Médico CON AI',
     title: 'Reportes completos\nal instante, desde\ncualquier lugar',
     text: 'Con ENCLAII, el especialista genera reportes clínicos estructurados en segundos. Accesibles desde cualquier dispositivo, compartibles con el paciente o referido de forma segura. Mejor atención, más rápida.',
     accent: '#10b981',
@@ -44,6 +44,20 @@ const CHAPTERS = [
 
 export default function ScrollStory() {
   const sectionRef = useRef(null)
+  const [theme, setTheme] = useState('dark')
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme')
+      setTheme(currentTheme === 'light' ? 'light' : 'dark')
+    }
+    
+    checkTheme()
+    const observer = new MutationObserver(checkTheme)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -112,7 +126,11 @@ export default function ScrollStory() {
           <div
             key={i}
             className="ss-bg absolute inset-0"
-            style={{ background: `${ch.bg}, linear-gradient(135deg, #050d1f 0%, #0a1733 100%)` }}
+            style={{ 
+              background: theme === 'light'
+                ? `${ch.bg}, linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)`
+                : `${ch.bg}, linear-gradient(135deg, #050d1f 0%, #0a1733 100%)`
+            }}
           />
         ))}
 
@@ -120,9 +138,11 @@ export default function ScrollStory() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+            backgroundImage: theme === 'light'
+              ? 'linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)'
+              : 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
             backgroundSize: '80px 80px',
-            opacity: 0.02,
+            opacity: theme === 'light' ? 0.03 : 0.02,
           }}
         />
 
@@ -141,18 +161,18 @@ export default function ScrollStory() {
                     {ch.num}
                   </span>
                   <div className="h-px w-8" style={{ background: ch.accent }} />
-                  <span className="text-xs tracking-widest text-slate-500 uppercase">{ch.tag}</span>
+                  <span className="text-xs tracking-widest uppercase" style={{ color: theme === 'light' ? '#64748b' : '#64748b' }}>{ch.tag}</span>
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-light text-white leading-tight mb-6 whitespace-pre-line">
+                <h2 className="text-3xl md:text-5xl font-light leading-tight mb-6 whitespace-pre-line" style={{ color: theme === 'light' ? '#1e293b' : 'white' }}>
                   {ch.title}
                 </h2>
 
-                <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+                <p className="text-base md:text-lg leading-relaxed" style={{ color: theme === 'light' ? '#475569' : '#94a3b8' }}>
                   {ch.text}
                 </p>
 
-                <div className="flex items-center gap-2 mt-8 text-xs text-slate-600 uppercase tracking-widest">
+                <div className="flex items-center gap-2 mt-8 text-xs uppercase tracking-widest" style={{ color: theme === 'light' ? '#94a3b8' : '#475569' }}>
                   <span>{i + 1}</span>
                   <span>/</span>
                   <span>{CHAPTERS.length}</span>
@@ -184,8 +204,8 @@ export default function ScrollStory() {
         </div>
 
         {/* Nombre de sección fijo arriba */}
-        <div className="absolute top-0 left-0 right-0 h-20 flex items-end justify-center pb-4 z-10 pointer-events-none">
-          <span className="text-[10px] text-slate-600 tracking-[0.5em] uppercase">Historia de ENCLAII</span>
+        <div className="absolute top-12 left-0 right-0 h-20 flex items-end justify-center pb-4 z-10 pointer-events-none">
+          <span className="text-[10px] tracking-[0.5em] uppercase" style={{ color: theme === 'light' ? '#94a3b8' : '#475569' }}>Beneficios de ENCLAII</span>
         </div>
       </div>
     </section>
@@ -196,48 +216,125 @@ export default function ScrollStory() {
    Visuales SVG animados por capítulo
 ════════════════════════════════════════════════ */
 
-/* Capítulo 1 — Fragmentado, caótico */
+/* Capítulo 1 — Interfaz Médica con ondas biométricas */
 function Visual1() {
-  const nodes = [
-    { cx: 80,  cy: 80  }, { cx: 220, cy: 60  }, { cx: 150, cy: 150 },
-    { cx: 60,  cy: 220 }, { cx: 240, cy: 210 }, { cx: 310, cy: 130 },
-    { cx: 130, cy: 290 }, { cx: 280, cy: 300 },
-  ]
   return (
     <svg viewBox="0 0 380 380" className="w-72 h-72 md:w-96 md:h-96">
       <defs>
         <filter id="glow1">
-          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feGaussianBlur stdDeviation="4" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
+        <radialGradient id="coreGradient1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#F87171" />
+          <stop offset="100%" stopColor="#DC2626" />
+        </radialGradient>
+        <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#991B1B" />
+          <stop offset="50%" stopColor="#EF4444" />
+          <stop offset="100%" stopColor="#991B1B" />
+        </linearGradient>
+        <linearGradient id="ringGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(239, 68, 68, 0.6)" />
+          <stop offset="100%" stopColor="rgba(239, 68, 68, 0.1)" />
+        </linearGradient>
       </defs>
-      {nodes.slice(0, 5).map((n, i) => (
-        <line key={i}
-          x1={n.cx} y1={n.cy}
-          x2={nodes[(i + 2) % nodes.length].cx}
-          y2={nodes[(i + 2) % nodes.length].cy}
-          stroke="#ef4444" strokeWidth="1" strokeDasharray="6 8" opacity="0.25"
+
+      {/* Núcleo central brillante en forma de nube pequeña flotante */}
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0 0; 0 -8; 0 0"
+          dur="3s"
+          repeatCount="indefinite"
+          origin="center"
         />
+        <path
+          d="M160 150 Q160 135 175 135 Q178 120 190 120 Q205 120 210 135 Q225 135 225 150 Q225 165 210 165 L175 165 Q160 165 160 150"
+          fill="url(#coreGradient1)"
+          filter="url(#glow1)"
+        />
+      </g>
+
+      {/* Ondas biométricas estilo montañas */}
+      <path
+        d="M0 228 L40 200 L80 240 L120 180 L160 220 L200 160 L240 210 L280 170 L320 230 L360 190 L380 200"
+        fill="none"
+        stroke="url(#waveGradient1)"
+        strokeWidth="2"
+        opacity="0.8"
+        filter="url(#glow1)"
+      >
+        <animate attributeName="d"
+          values="M0 228 L40 200 L80 240 L120 180 L160 220 L200 160 L240 210 L280 170 L320 230 L360 190 L380 200;
+                  M0 228 L40 210 L80 230 L120 190 L160 210 L200 170 L240 200 L280 180 L320 220 L360 200 L380 210;
+                  M0 228 L40 200 L80 240 L120 180 L160 220 L200 160 L240 210 L280 170 L320 230 L360 190 L380 200"
+          dur="4s"
+          repeatCount="indefinite"
+        />
+      </path>
+      <path
+        d="M0 240 L40 215 L80 255 L120 195 L160 235 L200 175 L240 225 L280 185 L320 245 L360 205 L380 215"
+        fill="none"
+        stroke="url(#waveGradient1)"
+        strokeWidth="2"
+        opacity="0.6"
+        filter="url(#glow1)"
+      >
+        <animate attributeName="d"
+          values="M0 240 L40 215 L80 255 L120 195 L160 235 L200 175 L240 225 L280 185 L320 245 L360 205 L380 215;
+                  M0 240 L40 225 L80 245 L120 205 L160 225 L200 185 L240 215 L280 195 L320 235 L360 215 L380 225;
+                  M0 240 L40 215 L80 255 L120 195 L160 235 L200 175 L240 225 L280 185 L320 245 L360 205 L380 215"
+          dur="4.5s"
+          repeatCount="indefinite"
+        />
+      </path>
+      <path
+        d="M0 250 L40 225 L80 265 L120 205 L160 245 L200 185 L240 235 L280 195 L320 255 L360 215 L380 225"
+        fill="none"
+        stroke="url(#waveGradient1)"
+        strokeWidth="2"
+        opacity="0.4"
+        filter="url(#glow1)"
+      >
+        <animate attributeName="d"
+          values="M0 250 L40 225 L80 265 L120 205 L160 245 L200 185 L240 235 L280 195 L320 255 L360 215 L380 225;
+                  M0 250 L40 235 L80 255 L120 215 L160 235 L200 195 L240 225 L280 205 L320 245 L360 225 L380 235;
+                  M0 250 L40 225 L80 265 L120 205 L160 245 L200 185 L240 235 L280 195 L320 255 L360 215 L380 225"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+      </path>
+      <path
+        d="M0 260 L40 235 L80 275 L120 215 L160 255 L200 195 L240 245 L280 205 L320 265 L360 225 L380 235"
+        fill="none"
+        stroke="url(#waveGradient1)"
+        strokeWidth="2"
+        opacity="0.2"
+        filter="url(#glow1)"
+      >
+        <animate attributeName="d"
+          values="M0 260 L40 235 L80 275 L120 215 L160 255 L200 195 L240 245 L280 205 L320 265 L360 225 L380 235;
+                  M0 260 L40 245 L80 265 L120 225 L160 245 L200 205 L240 235 L280 215 L320 255 L360 235 L380 245;
+                  M0 260 L40 235 L80 275 L120 215 L160 255 L200 195 L240 245 L280 205 L320 265 L360 225 L380 235"
+          dur="5.5s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      {/* Destellos rojos */}
+      {[{x: 50, y: 100}, {x: 320, y: 80}, {x: 80, y: 280}, {x: 300, y: 260}, {x: 150, y: 320}, {x: 200, y: 50}, {x: 350, y: 180}, {x: 30, y: 200}, {x: 250, y: 340}, {x: 100, y: 150}].map((pos, i) => (
+        <circle key={i} cx={pos.x} cy={pos.y} r="3" fill="#EF4444" filter="url(#glow1)">
+          <animate attributeName="opacity" values="0;1;0" dur={`${1.2 + i * 0.2}s`} repeatCount="indefinite" />
+          <animate attributeName="r" values="2;4;2" dur={`${1.2 + i * 0.2}s`} repeatCount="indefinite" />
+        </circle>
       ))}
-      {nodes.map((n, i) => (
-        <g key={i} filter="url(#glow1)">
-          <circle cx={n.cx} cy={n.cy} r="10" fill="none" stroke="#ef4444" strokeWidth="1.5" opacity="0.5" />
-          <circle cx={n.cx} cy={n.cy} r="3" fill="#ef4444" opacity="0.7">
-            <animate attributeName="opacity" values="0.7;0.3;0.7" dur={`${1.5 + i * 0.3}s`} repeatCount="indefinite" />
-          </circle>
-          <line x1={n.cx - 5} y1={n.cy - 5} x2={n.cx + 5} y2={n.cy + 5} stroke="#ef4444" strokeWidth="1" opacity="0.5" />
-          <line x1={n.cx + 5} y1={n.cy - 5} x2={n.cx - 5} y2={n.cy + 5} stroke="#ef4444" strokeWidth="1" opacity="0.5" />
-        </g>
-      ))}
-      <text x="50" y="40" fill="#ef4444" fontSize="9" opacity="0.4" fontFamily="monospace">DICOM local</text>
-      <text x="190" y="35" fill="#ef4444" fontSize="9" opacity="0.4" fontFamily="monospace">CD sin leer</text>
-      <text x="260" y="95" fill="#ef4444" fontSize="9" opacity="0.4" fontFamily="monospace">Sistema A</text>
-      <text x="20" y="260" fill="#ef4444" fontSize="9" opacity="0.4" fontFamily="monospace">Sistema B</text>
     </svg>
   )
 }
 
-/* Capítulo 2 — Captura, conectado */
+/* Capítulo 2 — Sistema Endoscópico */
 function Visual2() {
   return (
     <svg viewBox="0 0 380 380" className="w-72 h-72 md:w-96 md:h-96">
@@ -246,110 +343,243 @@ function Visual2() {
           <feGaussianBlur stdDeviation="4" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
-        <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#2196f3" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#2196f3" stopOpacity="0" />
+        <radialGradient id="lightGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(96, 165, 250, 0.7)" />
+          <stop offset="100%" stopColor="rgba(37, 99, 235, 0)" />
         </radialGradient>
       </defs>
-      <circle cx="190" cy="190" r="100" fill="url(#rg2)" />
-      {[60, 90, 120].map((r, i) => (
-        <circle key={i} cx="190" cy="190" r={r} fill="none" stroke="#2196f3" strokeWidth="1" opacity="0.2">
-          <animate attributeName="r" values={`${r};${r + 8};${r}`} dur={`${2 + i * 0.5}s`} repeatCount="indefinite" />
-          <animate attributeName="opacity" values="0.2;0.05;0.2" dur={`${2 + i * 0.5}s`} repeatCount="indefinite" />
-        </circle>
-      ))}
-      <g filter="url(#glow2)" transform="translate(140, 155)">
-        <path d="M30 40 Q10 40 10 25 Q10 10 25 10 Q28 0 40 2 Q50 -5 58 8 Q70 6 70 20 Q70 35 55 35 Z"
-          fill="none" stroke="#2196f3" strokeWidth="2" />
-        <line x1="35" y1="28" x2="35" y2="50" stroke="#2196f3" strokeWidth="1.5" opacity="0.6" />
-        <polyline points="28,44 35,50 42,44" fill="none" stroke="#2196f3" strokeWidth="1.5" opacity="0.6" />
+
+      {/* Torre de endoscopio */}
+      <g transform="translate(80, 100)">
+        <rect x="-40" y="0" width="110" height="70" rx="6" fill="#0F172A" stroke="#3B82F6" strokeWidth="1.5" />
+        <rect x="-30" y="15" width="45" height="20" fill="#1E293B" />
+        <circle cx="40" cy="25" r="6" fill="#2563EB" />
+        
+        {/* Botones del sistema */}
+        {[{x: -30, y: 45}, {x: -15, y: 45}, {x: 0, y: 45}, {x: 15, y: 45}, {x: 30, y: 45}].map((btn, i) => (
+          <rect key={i} x={btn.x} y={btn.y} width="10" height="8" rx="2" fill="#1E40AF" stroke="#3B82F6" strokeWidth="0.5">
+            <animate attributeName="fill" values="#1E40AF;#3B82F6;#1E40AF" dur={`${1 + i * 0.2}s`} repeatCount="indefinite" />
+          </rect>
+        ))}
       </g>
-      {[[60, 100], [320, 100], [60, 280], [320, 280]].map(([x, y], i) => (
-        <g key={i}>
-          <line x1={x} y1={y} x2="190" y2="190" stroke="#2196f3" strokeWidth="1" opacity="0.3" strokeDasharray="4 4">
-            <animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite" />
-          </line>
-          <circle cx={x} cy={y} r="6" fill="none" stroke="#2196f3" strokeWidth="1.5" opacity="0.6" />
-          <circle cx={x} cy={y} r="2.5" fill="#2196f3" opacity="0.8" />
-        </g>
-      ))}
-      <text x="130" y="345" fill="#2196f3" fontSize="10" opacity="0.5" fontFamily="monospace" textAnchor="middle">Sincronización automática</text>
+
+      {/* Mango de control */}
+      <g transform="translate(280, 80)">
+        <rect x="-10" y="-20" width="20" height="80" rx="8" fill="#0F172A" stroke="#60A5FA" strokeWidth="1" />
+        <circle cx="0" cy="0" r="10" stroke="#2563EB" strokeWidth="2" fill="none" />
+        <circle cx="0" cy="0" r="4" fill="#60A5FA" />
+        <rect x="-6" y="-30" width="6" height="8" fill="#1E40AF" />
+        <rect x="0" y="-30" width="6" height="8" fill="#1E3A8A" />
+      </g>
+
+      {/* Cable umbilical */}
+      <path d="M120 120 C150 180 200 180 280 120" fill="none" stroke="#1E3A8A" strokeWidth="3.5" />
+      <path d="M120 120 C150 180 200 180 280 120" fill="none" stroke="#3B82F6" strokeWidth="1.5" filter="url(#glow2)" />
+
+      {/* Tubo de inserción flexible */}
+      <path d="M280 120 C290 200 200 280 80 320" fill="none" stroke="#0F172A" strokeWidth="4" />
+      <path d="M280 120 C290 200 200 280 80 320" fill="none" stroke="#60A5FA" strokeWidth="1.2" filter="url(#glow2)" />
+
+      {/* Punta distal */}
+      <g transform="translate(80, 320)">
+        <circle cx="0" cy="0" r="7" fill="#DBEAFE" />
+        <circle cx="0" cy="0" r="14" fill="url(#lightGradient)" filter="url(#glow2)" />
+      </g>
+
+      {/* Monitor de escritorio */}
+      <g transform="translate(80, 340)">
+        {/* Cuerpo del monitor */}
+        <rect x="-50" y="-40" width="100" height="60" rx="6" fill="#0F172A" stroke="#3B82F6" strokeWidth="1.5" />
+        
+        {/* Pantalla */}
+        <rect x="-45" y="-35" width="90" height="45" rx="3" fill="#1E293B" />
+        <rect x="-40" y="-30" width="80" height="35" rx="2" fill="#0F172A" opacity="0.5">
+          <animate attributeName="fill" values="#0F172A;#1E293B;#0F172A" dur="2s" repeatCount="indefinite" />
+        </rect>
+        
+        {/* Base del monitor */}
+        <rect x="-20" y="20" width="40" height="10" rx="3" fill="#0F172A" stroke="#3B82F6" strokeWidth="1" />
+        <rect x="-10" y="30" width="20" height="5" rx="2" fill="#3B82F6" opacity="0.5" />
+      </g>
+
+      {/* Cometa animado por cable umbilical */}
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          from="120 120"
+          to="280 120"
+          dur="1.75s"
+          repeatCount="indefinite"
+        />
+        <rect x="-5" y="-5" width="10" height="10" rx="5" fill="#FFFFFF" stroke="#60A5FA" strokeWidth="1.5" filter="url(#glow2)">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.75s" repeatCount="indefinite" />
+        </rect>
+      </g>
+
+      {/* Cometa animado por tubo flexible */}
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          from="280 120"
+          to="80 320"
+          dur="1.75s"
+          begin="1.75s"
+          repeatCount="indefinite"
+        />
+        <rect x="-5" y="-5" width="10" height="10" rx="5" fill="#FFFFFF" stroke="#60A5FA" strokeWidth="1.5" filter="url(#glow2)">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.75s" repeatCount="indefinite" />
+        </rect>
+      </g>
     </svg>
   )
 }
 
-/* Capítulo 3 — IA, escáner */
+/* Capítulo 3 — Escaneo IA */
 function Visual3() {
-  const highlights = [[150, 140], [220, 170], [170, 220], [250, 240]]
   return (
     <svg viewBox="0 0 380 380" className="w-72 h-72 md:w-96 md:h-96">
       <defs>
-        <clipPath id="screen3"><rect x="80" y="70" width="220" height="220" rx="8" /></clipPath>
-        <filter id="glow3"><feGaussianBlur stdDeviation="3" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+        <filter id="glow3">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        <linearGradient id="laserGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="rgba(139, 92, 246, 0.25)" />
+          <stop offset="100%" stopColor="rgba(139, 92, 246, 0)" />
+        </linearGradient>
       </defs>
-      <rect x="80" y="70" width="220" height="220" rx="8" fill="none" stroke="#a855f7" strokeWidth="1.5" opacity="0.5" />
-      {[100, 130, 160, 190, 220, 250, 280].map(v => (
-        <g key={v}>
-          <line x1="80" y1={v} x2="300" y2={v} stroke="#a855f7" strokeWidth="0.5" opacity="0.12" clipPath="url(#screen3)" />
-          <line x1={v + 10} y1="70" x2={v + 10} y2="290" stroke="#a855f7" strokeWidth="0.5" opacity="0.12" clipPath="url(#screen3)" />
-        </g>
-      ))}
-      <line x1="80" y1="160" x2="300" y2="160" stroke="#a855f7" strokeWidth="2" opacity="0.7" clipPath="url(#screen3)">
-        <animate attributeName="y1" values="80;280;80" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="y2" values="80;280;80" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite" />
-      </line>
-      {highlights.map(([x, y], i) => (
-        <g key={i} filter="url(#glow3)">
-          <rect x={x - 12} y={y - 12} width="24" height="24" rx="3"
-            fill="none" stroke="#a855f7" strokeWidth="1.5" opacity="0.8" clipPath="url(#screen3)">
-            <animate attributeName="opacity" values="0.8;0.3;0.8" dur={`${1 + i * 0.4}s`} repeatCount="indefinite" />
-          </rect>
-          <circle cx={x} cy={y} r="2.5" fill="#a855f7" clipPath="url(#screen3)">
-            <animate attributeName="opacity" values="1;0.4;1" dur={`${1 + i * 0.4}s`} repeatCount="indefinite" />
-          </circle>
-        </g>
-      ))}
-      <g filter="url(#glow3)">
-        <rect x="90" y="80" width="36" height="16" rx="4" fill="#a855f7" opacity="0.2" />
-        <text x="108" y="92" fill="#a855f7" fontSize="9" textAnchor="middle" fontFamily="monospace" fontWeight="bold">IA</text>
+
+      {/* Recuadro de enfoque */}
+      <g transform="translate(190, 160)">
+        {/* Fondo sutil */}
+        <rect x="-133" y="-63" width="266" height="126" fill="rgba(139, 92, 246, 0.03)" />
+        {/* Borde del recuadro */}
+        <rect x="-133" y="-63" width="266" height="126" fill="none" stroke="#8B5CF6" strokeWidth="1.5" />
       </g>
-      <text x="190" y="320" fill="#a855f7" fontSize="10" opacity="0.5" fontFamily="monospace" textAnchor="middle">Confianza: 94.7%</text>
+
+      {/* Esquinas tácticas HUD */}
+      <g transform="translate(190, 160)" fill="#A78BFA">
+        {/* Esquina superior izquierda */}
+        <rect x="-135" y="-65" width="15" height="4" />
+        <rect x="-135" y="-65" width="4" height="15" />
+        {/* Esquina superior derecha */}
+        <rect x="120" y="-65" width="15" height="4" />
+        <rect x="131" y="-65" width="4" height="15" />
+        {/* Esquina inferior izquierda */}
+        <rect x="-135" y="61" width="15" height="4" />
+        <rect x="-135" y="50" width="4" height="15" />
+        {/* Esquina inferior derecha */}
+        <rect x="120" y="61" width="15" height="4" />
+        <rect x="131" y="50" width="4" height="15" />
+      </g>
+
+      {/* Línea láser de escaneo */}
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="57 97; 57 223; 57 97"
+          dur="3s"
+          repeatCount="indefinite"
+        />
+        <rect x="0" y="0" width="266" height="3" fill="#FFFFFF" filter="url(#glow3)">
+          <animate attributeName="opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite" />
+        </rect>
+        <rect x="0" y="-10" width="266" height="10" fill="url(#laserGradient)" />
+      </g>
+
+      {/* Etiqueta de detección */}
+      <g transform="translate(57, 65)">
+        <rect x="0" y="0" width="250" height="24" rx="4" fill="rgba(139, 92, 246, 0.15)" stroke="#6511c5" strokeWidth="1">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite" />
+        </rect>
+        <circle cx="12" cy="12" r="3" fill="#EF4444">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite" />
+        </circle>
+        <text x="22" y="16" fontSize="10" fill="#A78BFA" fontWeight="bold" letterSpacing="0.5">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite" />
+          ANÁLISIS DE IA: DETECTANDO IMAGEN...
+        </text>
+      </g>
     </svg>
   )
 }
 
-/* Capítulo 4 — Reporte, resultado limpio */
+/* Capítulo 4 — Reporte Médico IA */
 function Visual4() {
   return (
     <svg viewBox="0 0 380 380" className="w-72 h-72 md:w-96 md:h-96">
       <defs>
-        <filter id="glow4"><feGaussianBlur stdDeviation="3" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+        <filter id="glow4">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
       </defs>
-      <rect x="100" y="60" width="180" height="240" rx="8" fill="none" stroke="#10b981" strokeWidth="1.5" opacity="0.6" />
-      <rect x="100" y="60" width="180" height="40" rx="8" fill="#10b981" opacity="0.08" />
-      <text x="190" y="86" fill="#10b981" fontSize="10" textAnchor="middle" fontFamily="monospace" opacity="0.8">REPORTE ENDOSCÓPICO</text>
-      {[130, 150, 165, 195, 210, 225, 250, 265, 280].map((y, i) => (
-        <rect key={i} x={i % 3 === 0 ? 120 : 120} y={y}
-          width={i % 3 === 0 ? 140 : i % 3 === 1 ? 100 : 120}
-          height="6" rx="3" fill="#10b981" opacity={i % 3 === 0 ? 0.25 : 0.12} />
-      ))}
-      <g filter="url(#glow4)" transform="translate(155, 170)">
-        <circle cx="35" cy="35" r="28" fill="none" stroke="#10b981" strokeWidth="2" opacity="0.7" />
-        <polyline points="20,35 30,45 50,22" fill="none" stroke="#10b981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <animate attributeName="stroke-dasharray" values="0,60;60,0" dur="0.8s" fill="freeze" begin="0.5s" />
-        </polyline>
+
+      {/* Encabezado del reporte */}
+      <g transform="translate(57, 50)">
+        <text x="0" y="0" fontSize="10" fill="#10b981" fontWeight="bold" letterSpacing="1.5">INFORME GENERADO POR IA</text>
+        <text x="0" y="16" fontSize="12" fill="#94A3B8">ID Paciente: #9482-AMB</text>
+        <line x1="0" y1="28" x2="266" y2="28" stroke="rgba(16, 185, 129, 0.2)" strokeWidth="1" />
       </g>
-      {[[80, 340], [190, 350], [300, 340]].map(([x, y], i) => (
-        <g key={i}>
-          <circle cx={x} cy={y} r="14" fill="none" stroke="#10b981" strokeWidth="1" opacity="0.4" />
-          <text x={x} y={y + 4} fill="#10b981" fontSize="7" textAnchor="middle" opacity="0.6" fontFamily="monospace">
-            {['Email', 'PDF', 'QR'][i]}
-          </text>
+
+      {/* Gráfica lineal de salud */}
+      <g transform="translate(57, 120)">
+        {/* Línea de la gráfica */}
+        <path d="M0 0 L40 8 L80 -8 L120 16 L160 -4 L200 4 L266 0" fill="none" stroke="rgba(16, 185, 129, 0.4)" strokeWidth="1.5" />
+        <path d="M0 0 L40 8 L80 -8 L120 16 L160 -4 L200 4 L266 0" fill="none" stroke="#10b981" strokeWidth="0.8" filter="url(#glow4)" />
+        
+        {/* Puntos de control */}
+        <circle cx="80" cy="-8" r="3" fill="#059669" />
+        <circle cx="120" cy="16" r="3" fill="#10b981" />
+        
+        {/* Cometa animado recorriendo la gráfica */}
+        <g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 0; 40 8; 80 -8; 120 16; 160 -4; 200 4; 266 0; 0 0"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+          <circle cx="0" cy="0" r="4" fill="#FFFFFF" stroke="#10b981" strokeWidth="1" filter="url(#glow4)" />
         </g>
-      ))}
-      <line x1="94" y1="340" x2="176" y2="350" stroke="#10b981" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
-      <line x1="204" y1="350" x2="286" y2="340" stroke="#10b981" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
+      </g>
+
+      {/* Líneas de texto simuladas */}
+      <g transform="translate(57, 170)" fill="rgba(16, 185, 129, 0.15)">
+        {/* Bloque de texto 1 */}
+        <rect x="0" y="0" width="266" height="8" rx="2" />
+        <rect x="0" y="14" width="226" height="8" rx="2" />
+        
+        {/* Bloque de texto 2 */}
+        <rect x="0" y="42" width="266" height="8" rx="2" />
+        <rect x="0" y="56" width="160" height="8" rx="2" />
+      </g>
+
+      {/* Rastros verticales de luz */}
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="57 170; 323 170; 57 170"
+          dur="3s"
+          repeatCount="indefinite"
+        />
+        <rect x="0" y="0" width="2" height="22" fill="#059669" filter="url(#glow4)" />
+      </g>
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="57 212; 323 212; 57 212"
+          dur="3s"
+          repeatCount="indefinite"
+        />
+        <rect x="0" y="0" width="2" height="22" fill="#059669" filter="url(#glow4)" />
+      </g>
     </svg>
   )
 }
