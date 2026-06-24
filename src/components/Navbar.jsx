@@ -107,7 +107,7 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <Link to="/por-que" className="nav-link relative">¿Por qué SIMED?</Link>
+            <Link to="/por-que" className="nav-link relative">¿Por qué ENCLAII?</Link>
           </li>
           <li>
             <Link to="/contacto" className="nav-link-contact relative">Contacto</Link>
@@ -154,7 +154,7 @@ export default function Navbar() {
           {links.map(l => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block">{l.label}</a>
           ))}
-          <Link to="/por-que" onClick={() => setOpen(false)} className="block">¿Por qué SIMED?</Link>
+          <Link to="/por-que" onClick={() => setOpen(false)} className="block">¿Por qué ENCLAII?</Link>
           <Link to="/contacto" onClick={() => setOpen(false)} className="block">Contacto</Link>
           <Link
             to="/contacto"
