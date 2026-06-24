@@ -157,6 +157,15 @@ export default function PorQue() {
         .dv-sub { color: var(--sub); }
         .dv-accent { color: var(--accent-text); }
 
+        .stat-ring { transition: stroke-dashoffset 1.4s cubic-bezier(0.16,1,0.3,1); }
+        .stat-card.in .stat-ring { stroke-dashoffset: calc(var(--circ) - var(--dash)) !important; }
+
+        .hero-underline { position: relative; display: inline; }
+        .hero-underline::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px;
+          border-radius: 9999px; background: linear-gradient(90deg, var(--g1), var(--g2), var(--g3));
+          transition: width 1s cubic-bezier(0.16,1,0.3,1) 0.5s; display: block; }
+        .dv-reveal.in .hero-underline::after { width: 100%; }
+
         .flip-card { perspective: 1000px; height: 220px; animation: card-float 4s ease-in-out infinite; }
         .flip-card:nth-child(2) { animation-delay: 0.5s; }
         .flip-card:nth-child(3) { animation-delay: 1s; }
@@ -206,17 +215,14 @@ export default function PorQue() {
 
             {/* Texto + imágenes izquierda */}
             <div className="z-10 flex flex-col">
-              {/* Etiqueta pequeña */}
-              <div className="dv-reveal flex items-center gap-3 mb-3" style={{ transitionDelay: '50ms' }}>
-                <div className="h-px w-8" style={{ background: 'var(--g2)' }} />
-                <span className="dv-accent text-xs font-semibold tracking-[0.3em] uppercase">¿Por qué ENCLAII?</span>
-              </div>
 
               {/* Título */}
-              <h1 className="dv-reveal dv-title text-4xl md:text-6xl font-light leading-[1.1] tracking-tight text-center lg:text-left" style={{ transitionDelay: '120ms' }}>
-                ¿Por qué tu institución
+              <h1 className="dv-reveal dv-title text-4xl md:text-6xl leading-[1.15] tracking-tight text-center lg:text-left" style={{ transitionDelay: '120ms', fontWeight: 300, letterSpacing: '-0.02em' }}>
+                <span style={{ fontWeight: 300 }}>¿Por qué tu</span>
+                {' '}
+                <span style={{ fontWeight: 600 }}>institución</span>
                 <br />
-                <span className="dv-grad" style={{ fontStyle: 'italic', fontWeight: 500 }}>
+                <span className="dv-grad" style={{ fontStyle: 'normal', fontWeight: 700, letterSpacing: '-0.03em', fontSize: '1.05em' }}>
                   debería sumergirse con nosotros?
                 </span>
               </h1>
@@ -242,6 +248,7 @@ export default function PorQue() {
                     backgroundImage: `${overlay}, url('/panel3.jpg')`, animationDelay: '0.6s' }} />
               </div>
 
+
             </div>
 
             {/* Video derecha */}
@@ -262,7 +269,7 @@ export default function PorQue() {
         </section>
 
         {/* RAZONES */}
-        <section className="max-w-6xl mx-auto px-6 py-24">
+        <section className="max-w-6xl mx-auto px-6 pt-12 pb-4">
           <h2 className="dv-reveal dv-title text-3xl md:text-5xl font-light text-center mb-4">
             Lo que encontrarás <span className="dv-accent">en la profundidad</span>
           </h2>
@@ -334,14 +341,56 @@ export default function PorQue() {
           </div>
         </section>
 
+        {/* ESTADÍSTICAS */}
+        <section className="max-w-6xl mx-auto px-6 pt-4 pb-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { value: 80, label: '+80%', desc: 'menos tiempo en búsqueda de estudios', suffix: '%' },
+              { value: 100, label: '100%', desc: 'digitalización de expedientes', suffix: '%' },
+              { value: 75, label: '+50', desc: 'clínicas utilizando el sistema', suffix: '' },
+              { value: 100, label: '24/7', desc: 'seguridad y respaldo de datos', suffix: '' },
+            ].map((stat, i) => {
+              const r = 44
+              const circ = 2 * Math.PI * r
+              const dash = (stat.value / 100) * circ
+              return (
+                <div key={i} className="stat-card dv-reveal glass rounded-2xl p-6 flex flex-col items-center text-center gap-3"
+                  style={{ transitionDelay: `${i * 100}ms` }}>
+                  <div className="relative w-24 h-24">
+                    <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r={r} fill="none" stroke="var(--num-bg)" strokeWidth="8" />
+                      <circle cx="50" cy="50" r={r} fill="none"
+                        stroke="url(#statGrad)" strokeWidth="8"
+                        strokeLinecap="round"
+                        strokeDasharray={`${circ}`}
+                        strokeDashoffset={circ}
+                        className="stat-ring"
+                        style={{ '--dash': dash, '--circ': circ, transitionDelay: `${i * 150 + 400}ms` }}
+                      />
+                      <defs>
+                        <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="var(--g1)" />
+                          <stop offset="100%" stopColor="var(--g2)" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="dv-grad text-lg font-bold">{stat.label}</span>
+                    </div>
+                  </div>
+                  <p className="dv-sub text-sm leading-snug">{stat.desc}</p>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="max-w-6xl mx-auto px-6 pb-32">
 
           {/* Línea divisoria */}
-          <div className="dv-reveal flex items-center gap-4 mb-16" style={{ transitionDelay: '0ms' }}>
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--g2))' }} />
-            <span className="dv-accent text-xs font-medium tracking-[0.3em] uppercase px-3">el fondo</span>
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, var(--g2), transparent)' }} />
+          <div className="dv-reveal mt-8 mb-16" style={{ transitionDelay: '0ms' }}>
+            <div style={{ height: '2px', background: 'var(--g2)', borderRadius: '9999px' }} />
           </div>
 
           {/* Texto izquierda + Botones derecha */}
@@ -381,7 +430,7 @@ export default function PorQue() {
 
           {/* Línea final */}
           <div className="dv-reveal mt-16" style={{ transitionDelay: '400ms' }}>
-            <div className="h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--g2), transparent)' }} />
+            <div style={{ height: '2px', background: 'var(--g2)', borderRadius: '9999px' }} />
           </div>
 
         </section>
