@@ -128,7 +128,7 @@ export default function Contacto() {
                 <div className="contacto-action-title" style={styles.actionTitle}>Teléfono</div>
                 <div className="contacto-action-desc" style={styles.actionDesc}>Contacta con un especialista.</div>
                 <div style={{display:'flex', flexDirection:'column', gap:4, marginTop:4}}>
-                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Paciente&nbsp;</span><a href="tel:+527224485191" className="action-link-hover contacto-action-link" style={styles.actionLink}>722 448 5191</a></div>
+                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Numero&nbsp;</span><a href="tel:+527224485191" className="action-link-hover contacto-action-link" style={styles.actionLink}>722 448 5191</a></div>
                   <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Horario&nbsp;</span><span className="contacto-phone-val" style={styles.phoneVal}>Lun–Vie 9–18 h</span></div>
                 </div>
               </div>
