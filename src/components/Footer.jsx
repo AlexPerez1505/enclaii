@@ -63,8 +63,8 @@ export default function Footer() {
           </p>
 
           {/* CTA destacado */}
-          <a
-            href="mailto:licencias@cizcalli.gob.mx?subject=Solicitud%20de%20demo%20ENCLAII"
+          <button
+            onClick={() => window.dispatchEvent(new Event('open-demo-modal'))}
             className="inline-flex items-center gap-2 mt-8 bg-[#2196f3] text-white px-6 py-3 rounded-lg
               text-sm font-medium hover:bg-[#1e88e5] transition-all duration-200
               shadow-lg shadow-[#2196f3]/30 hover:shadow-[#2196f3]/50 hover:-translate-y-0.5"
@@ -73,7 +73,7 @@ export default function Footer() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </button>
         </div>
 
         {/* Línea separadora */}

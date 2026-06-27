@@ -145,8 +145,8 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="#contacto"
+              <button
+                onClick={() => window.dispatchEvent(new Event('open-demo-modal'))}
                 className="hero-btn inline-flex items-center justify-center gap-2 bg-[#2196f3] text-white
                   px-7 py-3.5 rounded-xl font-semibold hover:bg-[#1e88e5] transition-all
                   shadow-lg shadow-[#2196f3]/30 hover:shadow-[#2196f3]/50 hover:-translate-y-0.5 text-base"
@@ -155,7 +155,7 @@ export default function Hero() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </button>
               <a
                 href="#story"
                 className={isLight ? "hero-btn inline-flex items-center justify-center bg-white/70 text-slate-800 px-7 py-3.5 rounded-xl font-medium border border-slate-300/70 hover:bg-white hover:border-slate-400/80 transition-all text-base" : "hero-btn inline-flex items-center justify-center bg-white/5 text-slate-200 px-7 py-3.5 rounded-xl font-medium border border-white/10 hover:bg-white/10 hover:border-white/25 transition-all text-base"}

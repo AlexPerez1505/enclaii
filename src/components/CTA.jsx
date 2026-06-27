@@ -52,8 +52,8 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a
-              href="mailto:licencias@cizcalli.gob.mx?subject=Solicitud%20de%20demo%20SIMED"
+            <button
+              onClick={() => window.dispatchEvent(new Event('open-demo-modal'))}
               className="inline-flex items-center justify-center gap-2 bg-[#2196f3] text-white
                 px-8 py-4 rounded-xl font-semibold hover:bg-[#1e88e5] transition-all duration-200
                 shadow-lg shadow-[#2196f3]/30 hover:shadow-[#2196f3]/50 hover:-translate-y-0.5 text-base"
@@ -62,7 +62,7 @@ export default function CTA() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </button>
             <a
               href="mailto:licencias@cizcalli.gob.mx"
               className="inline-flex items-center justify-center bg-white/5 text-slate-200
