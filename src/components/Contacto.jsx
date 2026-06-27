@@ -4,7 +4,7 @@ import lottie from 'lottie-web'
 import DoctorIllustrationData from '../assets/DoctorIllustration.json'
 import ThinkingDoctorData from '../assets/ThinkingDoctor.json'
 
-const MAILTO = 'mailto:licencias@cizcalli.gob.mx?subject=Solicitud%20de%20demo%20SIMED'
+const MAILTO = 'mailto:licencias@cizcalli.gob.mx?subject=Solicitud%20de%20demo%20Enclaii'
 
 const Icon = {
   mail: (p) => (<svg {...p} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>),
@@ -13,8 +13,8 @@ const Icon = {
   clock: (p) => (<svg {...p} fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" strokeWidth={1.6} /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M12 7v5l3 2" /></svg>),
 }
 
-const TELEFONO = '55 1234 5678'
-const TELEFONO_LINK = 'tel:+525512345678'
+const TELEFONO = '722 448 5191'
+const TELEFONO_LINK = 'tel:+527224485191'
 const ORGANIGRAMA_IMG = ''
 
 const FULL_TEXT = 'Hablemos de tu\nservicio de endoscopia';
@@ -104,7 +104,7 @@ export default function Contacto() {
               <span style={styles.cursor}>|</span>
             </h1>
             <p className="subtext-hover contacto-subtext" style={styles.subtext}>
-              Escríbenos, llámanos o agenda una demostración de SIMED. Respondemos en menos de 24 horas hábiles.
+              Escríbenos, llámanos o agenda una demostración de Enclaii. Respondemos en menos de 24 horas hábiles.
             </p>
             <button onClick={() => setShowOrg(true)} className="btn-secondary-hover contacto-btn-secondary" style={styles.btnSecondary}>
               Sobre nosotros
@@ -118,7 +118,7 @@ export default function Contacto() {
               <div style={styles.contactItemBody}>
                 <div className="contacto-action-title" style={styles.actionTitle}>Chat</div>
                 <div className="contacto-action-desc" style={styles.actionDesc}>Ayuda rápida y personalizada.</div>
-                <a href="mailto:licencias@clizalli.gob.mx" className="action-link-hover contacto-action-link" style={{...styles.actionLink, marginTop: 4}}>licencias@clizalli.gob.mx</a>
+                <a href="mailto:administracion@grupomedibuy.com" className="action-link-hover contacto-action-link" style={{...styles.actionLink, marginTop: 4}}>administracion@grupomedibuy.com</a>
               </div>
             </div>
             {/* Teléfono */}
@@ -128,7 +128,7 @@ export default function Contacto() {
                 <div className="contacto-action-title" style={styles.actionTitle}>Teléfono</div>
                 <div className="contacto-action-desc" style={styles.actionDesc}>Contacta con un especialista.</div>
                 <div style={{display:'flex', flexDirection:'column', gap:4, marginTop:4}}>
-                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Paciente&nbsp;</span><a href="tel:5512345678" className="action-link-hover contacto-action-link" style={styles.actionLink}>55 1234 5678</a></div>
+                  <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Numero&nbsp;</span><a href="tel:+527224485191" className="action-link-hover contacto-action-link" style={styles.actionLink}>722 448 5191</a></div>
                   <div className="phone-row-hover" style={styles.phoneRow}><span className="contacto-phone-label" style={styles.phoneLabel}>Horario&nbsp;</span><span className="contacto-phone-val" style={styles.phoneVal}>Lun–Vie 9–18 h</span></div>
                 </div>
               </div>
@@ -163,10 +163,10 @@ export default function Contacto() {
             <div style={styles.modalBody}>
               <div style={styles.modalText}>
                 <p className="contacto-modal-desc" style={styles.modalDesc}>
-                  Encuentra respuestas rápidas a las preguntas más comunes sobre SIMED y nuestros servicios. Si no encuentras lo que buscas, contáctanos directamente.
+                  Encuentra respuestas rápidas a las preguntas más comunes sobre Enclaii y nuestros servicios. Si no encuentras lo que buscas, contáctanos directamente.
                 </p>
                 <div style={styles.modalFeatures}>
-                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>¿Cómo solicitar una demostración de SIMED?</div>
+                  <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>¿Cómo solicitar una demostración de Enclaii?</div>
                   <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>¿Cuáles son los requisitos para implementar la plataforma?</div>
                   <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>¿Cómo migrar expedientes clínicos existentes?</div>
                   <div className="contacto-modal-feature-item" style={styles.modalFeatureItem}><span style={styles.modalFeatureDot}/>Soporte técnico y tiempos de respuesta</div>
