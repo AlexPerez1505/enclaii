@@ -17,7 +17,7 @@ const TELEFONO = '722 448 5191'
 const TELEFONO_LINK = 'tel:+527224485191'
 const ORGANIGRAMA_IMG = ''
 
-const FULL_TEXT = 'Hablemos de tu\nsoftware Enclaii';
+const FULL_TEXT = 'Hablemos de tu\nservicio de endoscopia';
 
 export default function Contacto() {
   const [showOrg, setShowOrg] = useState(false);
