@@ -57,7 +57,10 @@ export default function Navbar() {
     setEnviando(true)
     setErrorServidor('')
     try {
-      const res = await fetch('/api/solicitar-demo', {
+      const url = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+        ? 'http://localhost:3001/api/solicitar-demo'
+        : '/send-demo.php'
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
