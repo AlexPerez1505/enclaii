@@ -163,6 +163,13 @@ export default function Hero() {
                 Ver como funciona
               </a>
             </div>
+
+            <p className={isLight ? "hero-sub text-base md:text-lg text-slate-700 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed" : "hero-sub text-base md:text-lg text-slate-300 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed"}>
+              <strong className={isLight ? "text-slate-950 font-medium" : "text-white font-medium"}>ENCLAII</strong> centraliza captura,
+              almacenamiento y analisis de estudios endoscopicos en la nube, con asistencia
+              diagnostica para hospitales y clinicas.
+            </p>
+
           </div>
 
           <div className={isLight ? "relative md:absolute mt-8 md:mt-0 md:bottom-6 md:right-0 grid w-full max-w-lg grid-cols-3 gap-3 md:gap-4 border-t border-slate-300/70 pt-4 md:pt-6" : "relative md:absolute mt-8 md:mt-0 md:bottom-6 md:right-0 grid w-full max-w-lg grid-cols-3 gap-3 md:gap-4 border-t border-white/10 pt-4 md:pt-6"}>
