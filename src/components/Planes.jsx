@@ -548,11 +548,13 @@ export default function Planes() {
                     </span>
 
                     <a
-                      href="/contacto"
+                      href="https://sistema.enclaii.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={event => event.stopPropagation()}
                       className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-emerald-300 to-[#6ea8ff] px-5 py-3 text-sm font-semibold text-[#071428] shadow-lg shadow-[#2196f3]/20 transition-all duration-200 hover:brightness-110"
                     >
-                      Solicitar información
+                      Contratar plan
                     </a>
                   </div>
                 </div>
