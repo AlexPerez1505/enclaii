@@ -1,0 +1,103 @@
+
+    /* Estilo para el calendario */
+    .calendar-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+    }
+
+    .calendar-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .calendar {
+        width: 100%;
+    }
+
+    
+    .form-label {
+        font-weight: bold;
+    }
+
+    /* Responsive Design */
+   /* Responsive Design para mejorar el diseño en móviles */
+@media (max-width: 768px) {
+    .fc-header-toolbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .fc-toolbar-chunk {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .fc-toolbar-title {
+        font-size: 1.2rem; /* Reducimos el tamaño del título */
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .fc-button-group {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .fc-button {
+        font-size: 0.9rem;
+        padding: 5px 8px;
+    }
+    .calendar-container {
+        margin-top: 130px; /* Un poco menos de margen en pantallas pequeñas */
+        padding: 20px 10px;
+        display: block;
+    }
+
+    .calendar-box {
+        width: 100%;
+        max-width: none;
+        padding: 10px;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .calendar {
+        font-size: 14px;
+    }
+}
+
+    /* Asegurar que los números y nombres de los meses sean negros */
+.fc-daygrid-day-number,
+.fc-toolbar-title,
+.fc-col-header-cell-cushion,
+.fc-daygrid-day {
+    color: black !important;
+}
+.fc-event-title {
+    color: red !important;
+}
+
+
+.calendar-container {
+    margin-top: 40px; /* Agrega un margen superior en todas las pantallas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+}
+.calendar-box {
+    margin-top: 40px; /* Agrega un margen superior en todas las pantallas */
+    }

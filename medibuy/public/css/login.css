@@ -1,0 +1,113 @@
+/* Estilos generales */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #bfdbfe, #93c5fd);
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor del formulario */
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 152px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Estilos para el logo */
+.logo {
+    display: block;
+    margin: 0 auto 10px;
+    width: 80px;
+}
+
+h2 {
+    text-align: center;
+    color: #1E6BB8;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Campos de entrada */
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-control {
+    padding: 0.5rem;
+    border-radius: 0 10px 10px 0;
+    border: none;
+    width: calc(100% - 36px);
+    box-sizing: border-box;
+    background-color: #F4F4F4;
+    color: #555;
+    height: 40px;
+    outline: none;
+    margin-top: 10px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.3);
+}
+
+/* Iconos */
+.icon-container {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.icon {
+    width: 20px;
+    height: auto;
+}
+
+/* Botón de ver contraseña */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    height: auto;
+}
+
+/* Botón de inicio de sesión */
+.btn-primary {
+    display: inline-block;
+    width: 190px;
+    height: 40px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #1E6BB8;
+    border: none;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background: #155a91;
+    transform: translateY(-2px);
+}
+
+/* Mensajes de error */
+.text-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+}

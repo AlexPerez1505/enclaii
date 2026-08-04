@@ -1,0 +1,431 @@
+/* Contenedor principal */
+.card-table {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    margin-top: 20px;
+    overflow-x: auto;
+      margin-top: 120px !important;
+    
+}
+
+/* Encabezado de tabla */
+.card-table thead {
+    background-color: #fff7c7; /* color amarillo pastel */
+    color: #333;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.card-table th, .card-table td {
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+/* Badges de estado */
+.badge.estado-activo {
+    background-color: #A8D5BA;
+    color: #1E3932;
+}
+
+.badge.estado-devuelto {
+    background-color: #FFF3B0;
+    color: #7A6600;
+}
+
+.badge.estado-retrasado {
+    background-color: #F8C8C4;
+    color: #842029;
+}
+
+/* Estilos de fila según estado */
+tr.estado-activo {
+    background-color: #e9f7ef;
+}
+
+tr.estado-devuelto {
+    background-color: #fff9e6;
+}
+
+tr.estado-retrasado {
+    background-color: #fdeaea;
+}
+/* Badge de estado vendido */
+.badge.estado-vendido {
+    background-color: #b3d9ff;
+    color: #084298;
+}
+
+/* Fila con estado vendido */
+tr.estado-vendido {
+    background-color: #e8f4ff;
+}
+
+/* Bordes sutiles */
+.card-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.dataTables_filter {
+    display: none;
+}
+.dataTables_length select {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+}
+
+.dataTables_length label {
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.btn-excel, .btn-csv, .btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #f0f0f0;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-excel:hover {
+    background-color: #d6f5d6;
+    color: #218838;
+}
+
+.btn-csv:hover {
+    background-color: #e6f7ff;
+    color: #007bff;
+}
+
+.btn-pdf:hover {
+    background-color: #fbeaea;
+    color: #dc3545;
+}
+
+.button-icon img {
+    height: 18px;
+}
+
+
+.card-table tbody tr {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.card-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.card-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Título + acciones */
+.card-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-table-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.btn-crear {
+    background-color: #A8D5BA; /* Verde pastel suave */
+    color: #1E3932; /* Verde oscuro para contraste elegante */
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(168, 213, 186, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* Info: "Mostrando del 1 al 4 de 4 registros" */
+.dataTables_info {
+    font-size: 14px;
+    color: #666; /* Verde oscuro profesional */
+    padding-top: 15px;
+    font-weight: 500;
+}
+
+/* Paginación general */
+.dataTables_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+/* Botones de paginación */
+.dataTables_paginate .paginate_button {
+    background-color: #A8D5BA;
+    color: #1E3932 !important;
+    border: none;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover en botones */
+.dataTables_paginate .paginate_button:hover {
+    background-color: #93cbae;
+    color: #fff !important;
+}
+
+/* Botón activo (página actual) */
+.dataTables_paginate .paginate_button.current {
+    background-color: #95dbc9 !important;
+    color: #ffffff !important;
+}
+
+/* Eliminar bordes feos de Bootstrap */
+.dataTables_paginate .paginate_button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-crear:hover {
+    background-color: #93cbae; /* Un poco más oscuro al pasar el mouse */
+    box-shadow: 0 6px 16px rgba(147, 203, 174, 0.4);
+    transform: translateY(-1px);
+}
+
+
+/* Filtros */
+.filtro-busqueda {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filtro-busqueda input[type="text"] {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    width: 250px;
+}
+
+.filtro-busqueda select {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+/* Iconos de acciones */
+.acciones i {
+    cursor: pointer;
+    margin-right: 10px;
+    color: #444;
+    transition: color 0.2s;
+}
+
+.acciones i:hover {
+    color: #000;
+}
+
+
+.swal-prestamo-popup {
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.swal-prestamo-container {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.swal-section {
+    border-left: 4px solid #7cb8eb;
+    background: #f9f9f9;
+    padding: 12px 16px;
+    border-radius: 8px;
+}
+
+.swal-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #444;
+}
+
+.swal-section p {
+    margin: 0;
+    font-size: 14px;
+    color: #222;
+}
+
+.swal-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.swal-grid > div {
+    flex: 1;
+    background: #f3f3f3;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.swal-grid h4 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+
+.swal-grid p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.firma-img {
+    max-height: 60px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.swal-btn-confirm {
+    background-color: #7cb8eb !important;
+    border-radius: 25px !important;
+    padding: 8px 24px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+    border-radius: 20%;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #117a8b;
+    transform: scale(1.1);
+}
+
+/* Botón editar - amarillo */
+.btn-editar {
+    background-color: #ffc107;
+    color: white;
+    border-radius: 20%;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+.btn-editar:hover {
+    background-color: #e0a800;
+    transform: scale(1.1);
+}
+
+/* Botón eliminar - rojo */
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 20%;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+.btn-eliminar:hover {
+    background-color: #bd2130;
+    transform: scale(1.1);
+}
+
+.icono-pequeno {
+    font-size: 0.75rem; /* o 12px */
+}
+.swal2-popup {
+    font-family: 'Arial', sans-serif;
+
+    border-radius: 15px;
+}
+.swal2-title {
+    color: #343a40;
+}
+.swal2-content {
+    color: #495057;
+}
+.btn-custom-confirm {
+    background-color: #4CAF50; /* Verde suave */
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    border: none; /* Eliminar borde */
+    margin-right: 10px; /* Separar botones */
+    transition: background-color 0.3s ease;
+}
+.btn-custom-confirm:hover {
+    background-color: #45a049; /* Verde un poco más oscuro */
+}
+.btn-custom-cancel {
+    background-color: #DC3545; /* Gris suave */
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    border: none; /* Eliminar borde */
+    margin-left: 10px; /* Separar botones */
+    transition: background-color 0.3s ease;
+}
+.btn-custom-cancel:hover {
+    background-color: #C82333; /* Gris un poco más oscuro */
+}
+#tablaPrestamos td {
+    text-transform: uppercase;
+}

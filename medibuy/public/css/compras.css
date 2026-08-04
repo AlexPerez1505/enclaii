@@ -1,0 +1,91 @@
+
+    .card-section {
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 0.5rem;
+    }
+
+    h2, h4 {
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    .btn-primary {
+        border-radius: 0.5rem;
+    }
+
+    .btn-secondary {
+        border-radius: 0.5rem;
+        background-color: #e5e7eb;
+        color: #374151;
+        border: none;
+    }
+
+    .btn-danger {
+        border-radius: 0.5rem;
+    }
+  .btn-pastel {
+        background-color: #f3e8ff;
+        color: #6b21a8;
+        font-weight: 600;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-pastel:hover {
+        background-color: #e9d5ff;
+        color: #581c87;
+    }
+
+    .btn-danger {
+        background-color: #fee2e2;
+        color: #b91c1c;
+        font-weight: 600;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.4rem 0.9rem;
+    }
+
+    .btn-danger:hover {
+        background-color: #fecaca;
+        color: #991b1b;
+    }
+
+    .equipo, .componente {
+        background: #f9fafb;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #c4b5fd;
+    }
+    .equipo-card, .componente-card {
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .alert-success {
+        border-radius: 0.5rem;
+    }
+    body{
+       background: #f4f7fb; 
+    }
+    .container{
+        margin-top:90px !important;
+    }
+

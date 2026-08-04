@@ -1,0 +1,963 @@
+    .swal2-popup.custom-swal {
+    border-radius: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 15px;
+    color: #444;
+    background-color: #fdfcff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    }
+
+    .swal2-title.custom-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    }
+
+    .swal2-html-container.custom-html {
+    text-align: left;
+    line-height: 1.8;
+    color: #555;
+    padding: 0.5rem 1rem;
+    }
+
+    .swal2-confirm.custom-btn {
+    background-color: #a78bfa;
+    color: white !important;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 12px;
+    font-size: 15px;
+    box-shadow: 0 4px 10px rgba(167, 139, 250, 0.3);
+    transition: all 0.2s ease-in-out;
+    }
+
+    .swal2-confirm.custom-btn:hover {
+    background-color: #8b5cf6;
+    }
+
+    .swal-img-evidencia {
+    width: 100%;
+    max-height: 260px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Contenedor para la preview de imagen */
+    .image-container {
+    width: 150px; /* ancho fijo para que no sea muy grande */
+    height: 150px; /* alto fijo */
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+    }
+
+    .image-container:hover {
+    border-color: #4a90e2;
+    }
+
+    /* Imagen preview dentro del contenedor */
+    #preview-icon {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* mantiene proporción y no distorsiona */
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+    }
+
+    /* Texto que desaparece cuando hay imagen */
+    #preview-text {
+    color: #999;
+    font-size: 0.9rem;
+    text-align: center;
+    }
+
+    /* Estilos minimalistas y profesionales para inputs y botones */
+    #formProducto input[type="text"],
+    #formProducto input[type="number"],
+    #formProducto input[type="file"],
+    #formProducto .form-control {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    }
+
+    #formProducto input[type="text"]:focus,
+    #formProducto input[type="number"]:focus,
+    #formProducto input[type="file"]:focus,
+    #formProducto .form-control:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    }
+
+    #formProducto button.btn-primary {
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: 600;
+    color: white;
+    transition: background-color 0.3s ease;
+    }
+
+    #formProducto button.btn-primary:hover {
+    background-color: #357ABD;
+    }
+
+:root{
+  --ink:#0f172a;
+  --muted:#6b7280;
+  --line:#e2e8f0;
+  --accent:#4f46e5;
+  --accent-soft:rgba(79,70,229,0.06);
+  --card-border:rgba(209,213,219,0.8);
+  --radius:18px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* 🎨 Fondo degradado */
+body{
+  background: linear-gradient(90deg, #d3b791,#ffffff);
+  color:var(--ink);
+  font-family:"Söhne","Circular Std","Poppins",system-ui,-apple-system,
+               "Segoe UI","Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Tipografía global */
+input,
+button,
+select,
+textarea,
+.badge,
+.alert,
+.btn,
+.form-control,
+.modal,
+.modal-title,
+.swal2-popup.custom-swal{
+  font-family:"Söhne","Circular Std","Poppins",system-ui,-apple-system,
+               "Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+
+/* 📦 Cards / contenedores con LIQUID GLASS */
+.modern-card{
+  position:relative;
+  border-radius:var(--radius);
+  border:1px solid var(--card-border);
+  background-color:rgba(255,255,255,0.47);
+  backdrop-filter:blur(18px) saturate(180%);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);
+  box-shadow:0 22px 50px rgba(15,23,42,0.25);
+  overflow:visible;   /* para que el dropdown pueda salir */
+  z-index:1;
+}
+
+/* Glow interno */
+.modern-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:
+    radial-gradient(circle at 0 0, rgba(255,255,255,0.70) 0, transparent 60%),
+    radial-gradient(circle at 100% 0, rgba(79,70,229,0.25) 0, transparent 65%),
+    radial-gradient(circle at 100% 100%, rgba(255,255,255,0.4) 0, transparent 60%);
+  opacity:.35;
+  mix-blend-mode:soft-light;
+}
+.modern-card > *{
+  position:relative;
+  z-index:1;
+}
+
+/* Cuando algo dentro tiene foco, sube la card completa */
+.modern-card:focus-within{
+  z-index:40;
+}
+
+/* Header de las cards */
+.modern-header{
+  border-bottom:1px solid rgba(148,163,184,0.35);
+  padding:.65rem .95rem;
+  font-weight:600;
+  font-size:.95rem;
+  color:var(--ink);
+  background:
+    linear-gradient(120deg, rgba(255,255,255,0.88), rgba(248,250,252,0.96));
+}
+
+/* Inputs / selects / textareas dentro de glass */
+.modern-input,
+.modern-select,
+.modern-textarea{
+  border-radius:12px;
+  border:1px solid rgba(148,163,184,0.75);
+  font-size:.95rem;
+  padding:.45rem .7rem;
+  background:rgba(255,255,255,0.9);
+  transition:border-color .18s var(--ease),
+             box-shadow .18s var(--ease),
+             background-color .18s var(--ease),
+             transform .08s;
+}
+.modern-input:focus,
+.modern-select:focus,
+.modern-textarea:focus{
+  border-color:var(--accent);
+  outline:none;
+  box-shadow:0 0 0 1px rgba(79,70,229,0.35),
+             0 14px 30px rgba(79,70,229,0.25);
+  background:#ffffff;
+  transform:translateY(-1px);
+}
+
+/* Select cerrado con efecto glass */
+.modern-select{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  box-shadow:0 18px 40px rgba(15,23,42,0.18);
+  background-image:linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 60%,
+      rgba(148,163,184,0.16) 100%
+  );
+  background-repeat:no-repeat;
+}
+.modern-select::-ms-expand{
+  display:none;
+}
+
+/* === DROPDOWN TIPO MILK-GLASS (CLIENTE / PRODUCTOS) === */
+.modern-dropdown,
+.dropdown-menu.modern-dropdown{
+  position:absolute;
+  border-radius:18px;
+  padding:.45rem;
+  border:1px solid rgba(255,255,255,0.75);
+
+  /* Fondo lechoso translúcido */
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,0.90),
+      rgba(248,250,252,0.85));
+  backdrop-filter: blur(26px) saturate(190%);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+
+  box-shadow:0 22px 50px rgba(15,23,42,0.25);
+  max-height:320px;
+  overflow-y:auto;     /* mantiene el scroll */
+  overflow-x:hidden;
+  z-index:60 !important;
+}
+
+/* Brillo suave */
+.modern-dropdown::before,
+.dropdown-menu.modern-dropdown::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 0 0,
+      rgba(255,255,255,0.55) 0, transparent 60%),
+    radial-gradient(circle at 100% 0,
+      rgba(255,255,255,0.35) 0, transparent 60%);
+  opacity:.7;
+  mix-blend-mode:soft-light;
+}
+
+/* Items del dropdown */
+.modern-dropdown-item{
+  position:relative;
+  z-index:1;
+  border-radius:10px;
+  padding:.45rem .7rem;
+  font-size:.9rem;
+  color:#111827;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  background:transparent;
+}
+
+/* Hover con velo suave */
+.modern-dropdown-item:hover{
+  background:rgba(255,255,255,0.45);
+}
+
+.modern-dropdown > *,
+.dropdown-menu.modern-dropdown > *{
+  position:relative;
+  z-index:1;
+}
+
+/* Imagen de producto en dropdown */
+.modern-product-img{
+  border-radius:10px;
+  box-shadow:0 10px 24px rgba(15,23,42,0.3);
+}
+.modern-product-info{ font-size:.82rem; }
+.modern-product-price{ font-weight:500; }
+
+/* ============================
+   TABLA PRODUCTOS SELECCIONADOS
+   ============================ */
+
+.modern-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  font-size:.85rem;
+  margin-bottom:0;
+}
+
+/* Encabezados */
+.modern-table thead th{
+  padding:.7rem .9rem;
+  border-bottom:1px solid rgba(226,232,240,0.95);
+  font-weight:600;
+  color:#4b5563;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,0.96),
+    rgba(248,250,252,0.96)
+  );
+  white-space:nowrap;
+}
+
+/* esquinas superiores suaves */
+.modern-table thead th:first-child{
+  border-top-left-radius:14px;
+}
+.modern-table thead th:last-child{
+  border-top-right-radius:14px;
+}
+
+/* Celdas */
+.modern-table tbody td{
+  padding:.55rem .9rem;
+  vertical-align:middle;
+  border-top:1px solid rgba(226,232,240,0.9);
+  color:#111827;
+}
+
+/* Filas minimalistas */
+.modern-table tbody tr:nth-child(odd){
+  background:rgba(255,255,255,0.75);
+}
+.modern-table tbody tr:nth-child(even){
+  background:rgba(248,250,252,0.85);
+}
+.modern-table tbody tr:hover{
+  background:rgba(129,140,248,0.06);
+}
+
+/* Imagen de producto en la primera columna */
+.modern-table tbody td:first-child img{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  object-fit:cover;
+  box-shadow:0 8px 20px rgba(15,23,42,0.20);
+}
+
+/* Inputs dentro de la tabla (cantidad, sobreprecio, núm. serie) */
+.modern-table input[type="number"],
+.modern-table input[type="text"],
+.modern-table .form-control{
+  border-radius:10px;
+  border:1px solid rgba(148,163,184,0.75);
+  background:rgba(255,255,255,0.95);
+  padding:.32rem .55rem;
+  font-size:.82rem;
+  height:36px;
+  box-shadow:0 6px 14px rgba(15,23,42,0.08);
+  transition:border-color .18s var(--ease),
+           box-shadow .18s var(--ease),
+           transform .06s;
+}
+.modern-table input[type="number"]:focus,
+.modern-table input[type="text"]:focus,
+.modern-table .form-control:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px rgba(79,70,229,0.35),
+             0 10px 22px rgba(79,70,229,0.20);
+  transform:translateY(-1px);
+}
+.modern-table input::placeholder{
+  color:#9ca3af;
+}
+
+/* Subtotal con énfasis sutil */
+.modern-table .subtotal-cell{
+  font-weight:600;
+}
+
+/* Botón Eliminar minimal pill */
+.modern-table .btn-danger{
+  border-radius:999px;
+  padding:.35rem .9rem;
+  font-size:.78rem;
+  font-weight:600;
+  border:none;
+  background:linear-gradient(135deg,#f97373,#ef4444);
+  box-shadow:0 10px 22px rgba(239,68,68,0.30);
+  transition:transform .06s ease, box-shadow .18s ease, filter .12s;
+}
+.modern-table .btn-danger:hover{
+  filter:brightness(1.03);
+  transform:translateY(-1px);
+  box-shadow:0 14px 28px rgba(239,68,68,0.35);
+}
+.modern-table .btn-danger:active{
+  transform:translateY(0);
+  box-shadow:0 4px 10px rgba(239,68,68,0.25);
+}
+
+/* Badges */
+.modern-badge{
+  border-radius:999px;
+  font-size:.7rem;
+  padding:.25rem .55rem;
+}
+
+/* Resumen – valores */
+.modern-value{
+  font-weight:700;
+  color:#111827;
+}
+
+/* Dropdown carta de garantía */
+#dropdown_cartas{
+  background-color:rgba(254,250,255,0.96);
+  border:1px solid #ddd;
+  border-radius:14px;
+  box-shadow:0 16px 40px rgba(0,0,0,0.18);
+}
+.list-option-carta{
+  cursor:pointer;
+  padding:10px 14px;
+  font-size:15px;
+  color:#555;
+  transition:background-color .18s var(--ease), transform .08s;
+}
+.list-option-carta:hover{
+  background-color:#e1bee7;
+  transform:translateY(-1px);
+}
+.list-option-carta strong{
+  font-weight:bold;
+  color:#6a1b9a;
+}
+
+/* SweetAlert custom */
+.swal2-popup.custom-swal{
+  border-radius:16px;
+  font-size:15px;
+  color:#444;
+  background-color:#fdfcff;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  padding:2rem;
+}
+.swal2-title.custom-title{
+  font-size:22px;
+  font-weight:600;
+  color:#333;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  justify-content:center;
+}
+.swal2-html-container.custom-html{
+  text-align:left;
+  line-height:1.8;
+  color:#555;
+  padding:.5rem 1rem;
+}
+.swal2-confirm.custom-btn{
+  background-color:#a78bfa;
+  color:#fff !important;
+  font-weight:600;
+  padding:.5rem 1.2rem;
+  border-radius:12px;
+  font-size:15px;
+  box-shadow:0 4px 10px rgba(167,139,250,0.3);
+  transition:all .2s ease-in-out;
+}
+.swal2-confirm.custom-btn:hover{
+  background-color:#8b5cf6;
+}
+.swal-img-evidencia{
+  width:100%;
+  max-height:260px;
+  object-fit:contain;
+  border-radius:12px;
+  margin-top:1rem;
+  box-shadow:0 4px 14px rgba(0,0,0,0.1);
+}
+
+/* Contenedor preview imagen (modal producto) */
+.image-container{
+  width:150px;
+  height:150px;
+  border:2px dashed #ccc;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  cursor:pointer;
+  background-color:#f9f9f9;
+  transition:border-color .25s ease, background-color .18s ease;
+}
+.image-container:hover{
+  border-color:#4a90e2;
+  background-color:#f3f4ff;
+}
+#preview-icon{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  border-radius:10px;
+  transition:transform .3s ease;
+}
+#preview-text{
+  color:#999;
+  font-size:.9rem;
+  text-align:center;
+}
+
+/* Inputs del modal producto */
+#formProducto input[type="text"],
+#formProducto input[type="number"],
+#formProducto input[type="file"],
+#formProducto .form-control{
+  border:1px solid #ccc;
+  border-radius:10px;
+  padding:8px 12px;
+  font-size:1rem;
+  transition:border-color .25s ease,
+           box-shadow .25s ease,
+           transform .06s;
+}
+#formProducto input[type="text"]:focus,
+#formProducto input[type="number"]:focus,
+#formProducto input[type="file"]:focus,
+#formProducto .form-control:focus{
+  border-color:#4a90e2;
+  outline:none;
+  box-shadow:0 0 0 1px rgba(74,144,226,0.4);
+  transform:translateY(-1px);
+}
+
+/* Botón primary modal producto */
+#formProducto button.btn-primary{
+  background-color:#4a90e2;
+  border:none;
+  border-radius:999px;
+  padding:10px 22px;
+  font-weight:600;
+  color:#fff;
+  font-size:.95rem;
+  transition:background-color .2s ease,
+             box-shadow .18s ease,
+             transform .06s;
+}
+#formProducto button.btn-primary:hover{
+  background-color:#357ABD;
+  box-shadow:0 12px 26px rgba(53,122,189,0.35);
+  transform:translateY(-1px);
+}
+
+/* Botón submit principal */
+button.btn.btn-success{
+  border-radius:999px;
+  padding:.55rem 1.4rem;
+  font-weight:600;
+}
+
+/* Modal "cliente guardado" */
+#cliente_creado .modal-content{
+  border-radius:20px;
+}
+.tradein-pill-btn{
+    border-radius: 999px;
+    padding: 4px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #b4f397;          /* borde verde suave */
+    background-color: #e9ffb5;           /* verde muy claro tipo highlight */
+    color: #111827;                      /* texto oscuro */
+    box-shadow: 0 0 0 1px rgba(180,243,151,0.5);
+    transition: background-color .18s ease, 
+                box-shadow .18s ease,
+                transform .08s ease;
+}
+
+.tradein-pill-btn:hover{
+    background-color: #dcff94;           /* un poco más intenso */
+    box-shadow: 0 6px 14px rgba(148, 220, 120, 0.5);
+    transform: translateY(-1px);
+}
+
+.tradein-pill-btn:active{
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(148, 220, 120, 0.4);
+}
+/* Botón tipo píldora negro */
+.primary-pill-btn{
+    position: relative;
+    border-radius: 999px;
+    padding: 0.55rem 1.9rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    background-color: #000000;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+
+.primary-pill-btn:hover{
+    background-color:#111111;
+    transform: translateY(-1px);
+    box-shadow:0 14px 32px rgba(0,0,0,0.32);
+}
+
+.primary-pill-btn:active{
+    transform: translateY(0);
+    box-shadow:0 6px 16px rgba(0,0,0,0.28);
+}
+
+/* Loader circular */
+.primary-pill-btn .btn-loader{
+    width: 0;                 /* oculto por defecto */
+    height: 0;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    border-top-color:#ffffff;
+    border-right-color:#ffffff;
+    animation: spin-btn 0.7s linear infinite;
+    opacity:0;
+    transition: opacity .15s ease, width .15s ease, height .15s ease;
+}
+
+/* Estado cargando */
+.primary-pill-btn.is-loading{
+    cursor: default;
+    pointer-events: none;
+    opacity: .92;
+}
+
+.primary-pill-btn.is-loading .btn-label{
+    opacity:.0;
+    transform: translateY(2px);
+    transition: opacity .12s ease, transform .12s ease;
+}
+
+.primary-pill-btn.is-loading .btn-loader{
+    width: 16px;
+    height: 16px;
+    opacity:1;
+}
+
+/* Animación giro */
+@keyframes spin-btn{
+    to{ transform: rotate(360deg); }
+}
+
+/* =========================
+   REGALO (0.00) UI
+   ========================= */
+
+/* Badge principal */
+.gift-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  padding:.28rem .6rem;
+  border-radius:999px;
+  font-weight:800;
+  font-size:11px;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+
+  color:#14532d;
+  background:#dcfce7;
+  border:1px solid #86efac;
+
+  box-shadow:0 6px 18px rgba(15,23,42,.06);
+  white-space:nowrap;
+}
+.gift-badge::before{
+  content:"🎁";
+  font-size:13px;
+  line-height:1;
+}
+
+/* Para cuando lo pones dentro de tablas / subtotal */
+.subtotal-is-gift{
+  color:#14532d !important;
+  font-weight:800;
+}
+.subtotal-is-gift .gift-badge{
+  transform: translateY(-1px);
+}
+
+/* Un “look” discreto para la celda de subtotal si es regalo */
+td.subtotal-cell{
+  white-space:nowrap;
+}
+td.subtotal-cell.is-gift{
+  background: rgba(220,252,231,.35);
+  border-radius:10px;
+}
+
+/* Dropdown/buscador: precio */
+.modern-product-price.is-gift{
+  color:#14532d !important;
+  font-weight:800;
+}
+.modern-product-price.is-gift::before{
+  content:"🎁 ";
+}
+
+/* Accesibilidad: si alguien imprime */
+@media print{
+  td.subtotal-cell.is-gift{
+    background: transparent !important;
+    border:1px solid #86efac !important;
+  }
+}
+/* =====================================================
+   REGALO switch (estilo tipo “Propuestas”)
+   - Se usa en la columna "Regalo" dentro de la tabla productos
+   - HTML esperado:
+     <div class="gift-switch">
+        <input type="checkbox" class="gift-toggle">
+        <span class="gift-track"></span>
+        <span class="gift-thumb"></span>
+        <span class="gift-text">Regalo</span>
+     </div>
+   Si no tienes track/thumb/text, abajo también incluyo fallback
+   ===================================================== */
+
+/* Contenedor */
+.gift-switch{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Switch base */
+.gift-switch .gift-toggle{
+  appearance: none;
+  -webkit-appearance: none;
+  width: 44px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, .65);
+  background: #eef2ff;               /* azul muy claro */
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+}
+
+/* “thumb” interno */
+.gift-switch .gift-toggle::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .12);
+  transition: left .2s ease, transform .2s ease;
+}
+
+/* Hover / focus (look & feel pro) */
+.gift-switch .gift-toggle:hover{
+  border-color: rgba(59, 130, 246, .55);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, .12);
+}
+.gift-switch .gift-toggle:focus-visible{
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, .18);
+}
+
+/* ON */
+.gift-switch .gift-toggle:checked{
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+  border-color: rgba(29, 78, 216, .55);
+}
+.gift-switch .gift-toggle:checked::after{
+  left: 21px;
+}
+
+/* Label texto */
+.gift-switch .gift-muted,
+.gift-switch .gift-text{
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  color: #475569;
+}
+.gift-switch .gift-toggle:checked ~ .gift-muted,
+.gift-switch .gift-toggle:checked ~ .gift-text{
+  color: #1d4ed8;
+}
+
+/* =====================================================
+   Fallback para tu HTML actual:
+   <div class="gift-switch">
+     <input type="checkbox" class="gift-toggle">
+     <span class="gift-muted">Regalo</span>
+   </div>
+   (Ya lo tienes así, por eso esto funciona sin tocar HTML)
+   ===================================================== */
+
+/* Alineación perfecta en celdas de tabla */
+td .gift-switch{
+  justify-content: center;
+}
+
+/* =====================================================
+   Estética tabla (look “Propuestas”)
+   Aplica a #tabla-productos (si existe)
+   ===================================================== */
+
+#tabla-productos{
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(148, 163, 184, .35);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, .06);
+}
+
+#tabla-productos thead th{
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, .35);
+}
+
+#tabla-productos tbody td{
+  padding: 12px 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(148, 163, 184, .20);
+  color: #0f172a;
+  font-size: 13.5px;
+}
+
+#tabla-productos tbody tr:hover{
+  background: rgba(59, 130, 246, .06);
+}
+
+/* Inputs dentro de tabla estilo “card” */
+#tabla-productos .form-control{
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, .45);
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+#tabla-productos .form-control:focus{
+  border-color: rgba(59, 130, 246, .65);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, .14);
+}
+
+/* Subtotal “REGALO” que se vea premium */
+#tabla-productos td.subtotal{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+#tabla-productos td.subtotal:contains("REGALO"){ /* (No todos los browsers soportan :contains) */
+  color: #1d4ed8;
+}
+
+/* Mejor: clase opcional si quieres marcar regalo en JS:
+   tr.addClass('is-gift') -> entonces aplicará esto */
+#tabla-productos tbody tr.is-gift td.subtotal{
+  color: #1d4ed8;
+}
+#tabla-productos tbody tr.is-gift{
+  background: rgba(29, 78, 216, .04);
+}
+
+/* Botón eliminar más “pro” */
+#tabla-productos .btn-danger.btn-icon{
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 8px 18px rgba(239, 68, 68, .12);
+}
+#tabla-productos .btn-danger.btn-icon:hover{
+  transform: translateY(-1px);
+}
+
+/* Imagen producto */
+#tabla-productos img{
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, .35);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .08);
+}
+
+/* Responsive suave */
+@media (max-width: 768px){
+  #tabla-productos thead th,
+  #tabla-productos tbody td{
+    padding: 10px 10px;
+    font-size: 13px;
+  }
+  .gift-switch{
+    gap: 8px;
+  }
+  .gift-switch .gift-toggle{
+    width: 42px;
+    height: 24px;
+  }
+  .gift-switch .gift-toggle::after{
+    width: 18px;
+    height: 18px;
+  }
+  .gift-switch .gift-toggle:checked::after{
+    left: 20px;
+  }
+}

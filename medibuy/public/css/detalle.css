@@ -1,0 +1,60 @@
+    body { background: #f5faff !important; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+    .card { border: none; box-shadow: 0 2px 8px rgba(80, 80, 180, 0.08) !important; }
+    .fade-step { animation: fadeIn .5s;}
+    .btn-outline-primary { border-width:2px; font-weight:600; letter-spacing: 0.02em;}
+    .badge {font-size:13px;}
+    .wizard-step { min-height:260px;}
+    .next-step, .prev-step { transition: color .18s; font-weight: 500;}
+    .next-step:hover, .prev-step:hover { color: #4f46e5 !important;}
+    @keyframes fadeIn { from { opacity:.7; transform: translateY(8px);} to { opacity:1; transform: none;} }
+    /* Mejor separación y alineación */
+    @media (min-width: 992px) {
+        .card { min-height: 400px;}
+        .col-lg-5, .col-lg-7 { display: flex; align-items: stretch; flex-direction: column; }
+    }
+
+@keyframes deepSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95) rotateX(8deg);
+    }
+    40% {
+        opacity: 0.7;
+        transform: translateY(-10px) scale(1.02) rotateX(0deg);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(4px) scale(0.997);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animated-entry {
+    animation: deepSlideIn 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+
+.preview-img-link { display:inline-block; }
+.preview-img {
+    width:54px; height:54px; object-fit:cover;
+    border-radius:12px; border:1.5px solid #e6eafe;
+    background:#f5f8ff; transition: transform .13s, box-shadow .13s;
+}
+.preview-img:hover {
+    transform: scale(1.07) rotate(-2deg);
+    box-shadow:0 4px 14px #d4e9fd6a;
+    z-index:1;
+}
+.preview-video {
+    width:58px; height:54px; border-radius:11px;
+    border:1.5px solid #dbe6fa; object-fit:cover;
+    background: #eaf3fc;
+    transition:box-shadow .14s;
+}
+.preview-video:hover { box-shadow:0 4px 18px #c3e7fc50; }

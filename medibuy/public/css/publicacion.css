@@ -1,0 +1,87 @@
+body {
+    background: linear-gradient(120deg, #f0f2f5, #fdfdfd);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-form {
+    background: linear-gradient(145deg, #ffffff, #f3f6ff);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.card-form:hover {
+    transform: scale(1.01);
+}
+
+.card-form h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Estilo elegante para etiquetas */
+.form-label {
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+/* Campos input/textarea */
+.form-control {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    background-color: #fefefe;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Botón estilizado */
+.btn-submit {
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(90deg, #6610f2, #0d6efd);
+    transform: scale(1.02);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 576px) {
+    .card-form {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+}

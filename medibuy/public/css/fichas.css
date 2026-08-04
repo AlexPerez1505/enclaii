@@ -1,0 +1,245 @@
+body {
+    background-color: #F9FAFC;
+    font-family: 'Poppins', sans-serif;
+}
+.container {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    animation: fade-in 0.5s ease-in-out;
+    margin: auto; /* Centra el formulario */
+    margin-top:10px;
+    margin-bottom:130px;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, #ffffff 0%, #f3f3f3 100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+.card-title {
+    color: #1E6BB8;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+.btn-custom {
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    height: 45px;
+    width: 120px;
+    display: inline-flex; /* Asegura que <a> y <button> se comporten igual */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se desborde */
+}
+.swal2-popup {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+}
+.swal2-title {
+    color: #343a40;
+}
+.swal2-content {
+    color: #495057;
+}
+.center-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 80px; /* Ocupa toda la altura de la pantalla */
+    width: 100%; /* Ocupa todo el ancho */
+    margin-top: 70px;
+}
+.btn-custom-confirm {
+    background-color: #4CAF50; /* Verde suave */
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    border: none; /* Eliminar borde */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se desborde */
+
+
+}
+.btn-custom-confirm:hover {
+    background-color: #45a049; /* Verde un poco más oscuro */
+}
+.btn-custom-cancel {
+    background-color: #DC3545; /* Gris suave */
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    border: none; /* Eliminar borde */
+    margin-left: 10px; /* Separar botones */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se desborde */
+}
+.btn-custom-cancel:hover {
+    background-color: #C82333; /* Gris un poco más oscuro */
+}
+/* Contenedor principal */
+
+
+/* Mensajes de éxito y error */
+.bg-green-200, .bg-red-200 {
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.bg-green-200 {
+    background: #d1e7dd;
+    color: #155724;
+}
+.bg-red-200 {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Tabla de solicitudes */
+/* Tabla responsiva */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+    background: #7cb8eb;
+    color: white;
+    text-transform: uppercase;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+tbody tr:hover {
+    background: #f1f1f1;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Botón de acción */
+a.px-4.py-2 {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+a.px-4.py-2:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Permite desplazamiento en dispositivos pequeños */
+@media screen and (max-width: 768px) {
+    .form-contenedor {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Botón animado */
+.btn-animated {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(187, 190, 196);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-animated::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease-in-out;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.btn-animated:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.btn-animated:hover {
+    background-color: #2563EB;
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Ajuste del botón en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .btn-animated {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}  
+.img-ficha {
+    width: 44px; /* Ajusta el tamaño */
+    height: 44px;
+    object-fit: cover; /* Mantiene la proporción sin distorsión */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.img-ficha:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+
+}

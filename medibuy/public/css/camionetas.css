@@ -1,0 +1,121 @@
+body {
+    background-color: #F9FAFC;
+    font-family: 'Poppins', sans-serif;
+}
+.container {
+    max-width: 1200px;
+    margin-top: 50px;
+}
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, #ffffff 0%, #f3f3f3 100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+.card-title {
+    color: #1E6BB8;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+.btn-custom {
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    height: 45px;
+    width: 120px;
+    display: inline-flex; /* Asegura que <a> y <button> se comporten igual */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se desborde */
+}
+.swal2-popup {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+}
+.swal2-title {
+    color: #343a40;
+}
+.swal2-content {
+    color: #495057;
+}
+.btn-custom-confirm {
+    background-color: #4CAF50; /* Verde suave */
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    border: none; /* Eliminar borde */
+    margin-right: 10px; /* Separar botones */
+    transition: background-color 0.3s ease;
+}
+.btn-custom-confirm:hover {
+    background-color: #45a049; /* Verde un poco más oscuro */
+}
+.btn-custom-cancel {
+    background-color: #DC3545; /* Gris suave */
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    border: none; /* Eliminar borde */
+    margin-left: 10px; /* Separar botones */
+    transition: background-color 0.3s ease;
+}
+.btn-custom-cancel:hover {
+    background-color: #C82333; /* Gris un poco más oscuro */
+}
+ /* Botón info */
+ .btn-info {
+    background-color: #17a2b8; /* Azul más suave */
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    transition: background-color 0.3s ease;
+}
+.btn-info:hover {
+    background-color: #117a8b; /* Hover sutil en azul más grisáceo */
+}
+
+/* Botón primario */
+.btn-primary {
+    background-color: #FFC107; /* Azul oscuro minimalista */
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #D39E00; /* Hover con un tono más frío de azul */
+}
+
+/* Botón de peligro */
+.btn-danger {
+    background-color: #e43e3d; /* Rojo suave y profesional */
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 25px;
+    transition: background-color 0.3s ease;
+}
+.btn-danger:hover {
+    background-color: #c1443d; /* Hover con un tono más apagado de rojo */
+}
+
+.btn-success {
+    background-color: #28A745;
+    border: none;
+    color: white;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}

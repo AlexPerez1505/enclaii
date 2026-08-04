@@ -1,0 +1,50 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafd;
+    color: #5c5c5c;
+}
+
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 50, 0.05);
+}
+
+h2 {
+    color: #5a6eff;
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.table thead {
+    background-color: #a3bffa;
+    color: #ffffff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f1f5ff;
+}
+
+.alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: none;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #d0d7e2;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: #e0e7ff;
+    border-radius: 6px;
+    color: #1d4ed8 !important;
+    margin: 2px;
+    padding: 6px 12px;
+}

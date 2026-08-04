@@ -1,0 +1,197 @@
+/* ======== LOOK & FEEL tipo “segunda imagen” ======== */
+:root{
+  --card-r:18px;
+  --brand:#0d6efd;
+  --ink:#1f2d3d;
+  --muted:#6c7a89;
+  --soft:#f6f8fb;
+  --ok:#16a34a;
+  --warn:#f59e0b;
+  --bad:#dc3545;
+}
+
+html,body{ height:100%; }
+body{ background:var(--soft); color:var(--ink); }
+.container-page{ max-width:1400px; }
+.page-title{ letter-spacing:-.6px; }
+
+/* Layout */
+.row.verif-layout{ align-items:flex-start; }
+.right-col-offset{ margin-top:90px; }
+
+/* Sidebar pegajoso (escritorio) */
+@media (min-width: 992px){
+  .verif-sticky{
+    position: sticky;
+    top: 88px; /* ajusta según tu header */
+    max-height: calc(100vh - 108px);
+    overflow:auto;
+  }
+}
+
+/* Card pulidas */
+.card{
+  border:0;
+  border-radius: var(--card-r);
+  box-shadow: 0 8px 24px rgba(25,42,70,.06);
+}
+
+/* Panel izquierdo */
+.verif-sticky{
+  background:#fff;
+  border-radius: var(--card-r);
+  padding: 14px 14px 6px;
+}
+.verif-sticky .card-body{ padding: 10px; }
+.helper{ color:var(--muted); }
+
+/* input scanner invisible */
+.hidden-scanner{
+  opacity:.01; position:absolute; left:-9999px; top:-9999px;
+}
+
+/* Tabla izquierda */
+.table.clean{ --bs-table-bg: #fff; }
+.table thead.sticky-top{
+  background:#e9f5ff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  z-index: 5;
+}
+.table thead th{ white-space:nowrap; font-weight:700; color:#143b64; }
+.table tbody tr:not(.row-verified) td{ border-bottom: 1px dashed #eef1f6; }
+.table tbody tr.row-verified{ background:#f0fff4; }
+.table tbody tr.row-verified td{ border-bottom-color:#e5faeb; }
+.serie{ font-size:1.12rem; color:var(--brand); font-weight:700; }
+
+.min-w-190{ min-width:190px; }
+
+/* Chip de estado */
+.badge-chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  border-radius:999px; padding:.35rem .75rem; font-weight:700;
+}
+.badge-chip .dot{
+  width:8px; height:8px; border-radius:50%; display:inline-block; background:#9ca3af;
+}
+.badge-chip.chip-pend{ background:#f3f4f6; color:#374151; }
+.badge-chip.chip-ok{ background:#dcfce7; color:#065f46; }
+.badge-chip.chip-ok .dot{ background:var(--ok); }
+
+/* Tabla derecha */
+.table.form-grid thead th{ color:#475569; font-weight:700; }
+.estado-select, .incidencia-input{ border-radius:10px; }
+.estado-select:disabled, .incidencia-input[readonly]{ background:#f7f8fb; }
+.table-row-animate{ transition: background .25s ease; }
+.table-row-animate.enabled{ background:#fffef7; }
+
+/* Micro anims */
+.animate-pop{ transform:translateY(0); transition:.18s ease; }
+.animate-pop:active{ transform:translateY(2px); }
+.animate-shadow{ transition: box-shadow .18s ease; }
+.animate-shadow:focus{ box-shadow:0 0 0 .2rem rgba(13,110,253,.15); }
+
+/* Scrollbar sutil del panel izquierdo */
+.verif-sticky::-webkit-scrollbar{ width:8px; }
+.verif-sticky::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.15); border-radius:8px; }
+
+/* Progreso (estilo segunda imagen) */
+.progress.slim{ height:12px; background:#eef2f7; border-radius:999px; }
+.progress-bar.warn{ background:#fbbf24; transition: width .25s ease; }
+.shake-red{ background:#ef4444 !important; animation: shake .6s; }
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+/* ===== Checklist de componentes (scope) ===== */
+#componentes-wrapper{
+  --sw-w: 46px;
+  --sw-h: 26px;
+  --sw-off: #dfe6ef;          /* pista off (gris pastel) */
+  --sw-on:  #c8edd8;          /* pista on (verde pastel) */
+  --ring:   rgba(99,102,241,.18);
+}
+
+/* Card: sombra sutil + animación de entrada */
+#componentes-list > [data-serie]{
+  border: 1px solid #e9eef6;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(15,23,42,.06);
+  overflow: hidden;
+  animation: compPop .25s ease-out;
+}
+@keyframes compPop{
+  from{ transform: translateY(6px); opacity: 0; }
+  to  { transform: translateY(0);  opacity: 1; }
+}
+
+/* Fila de componente */
+#componentes-list .form-check{
+  display:flex; align-items:center; gap:.75rem;
+  padding:.55rem .75rem;
+  border-radius:12px;
+  background:#f8fafc;
+  border:1px solid #eef2f7;
+}
+
+/* === Fix Bootstrap: evita que el switch se salga del contenedor === */
+#componentes-list .form-switch{ padding-left:0 !important; }
+#componentes-list .form-switch .form-check-input{
+  margin-left:0 !important; position:relative;
+  width:var(--sw-w); height:var(--sw-h);
+  border:none; border-radius:999px;
+  background:var(--sw-off);
+  box-shadow: inset 0 1px 2px rgba(15,23,42,.12);
+  transition: background .22s ease;
+  background-image:none;        /* anula iconos de BS */
+  flex: none;
+}
+#componentes-list .form-switch .form-check-input:focus{
+  outline: none; box-shadow: 0 0 0 .22rem var(--ring);
+}
+
+/* Knob animado */
+#componentes-list .form-switch .form-check-input::before{
+  content:""; position:absolute; top:3px; left:3px;
+  width:calc(var(--sw-h) - 6px); height:calc(var(--sw-h) - 6px);
+  background:#fff; border-radius:50%;
+  box-shadow: 0 1px 2px rgba(15,23,42,.25);
+  transition: transform .22s cubic-bezier(.22,.61,.36,1),
+              width .12s ease;
+}
+#componentes-list .form-switch .form-check-input:active::before{
+  width:calc(var(--sw-h) - 2px);                /* efecto “press” */
+}
+#componentes-list .form-switch .form-check-input:checked{
+  background:var(--sw-on);
+}
+#componentes-list .form-switch .form-check-input:checked::before{
+  transform: translateX(calc(var(--sw-w) - var(--sw-h)));
+}
+
+/* Etiqueta y badge */
+#componentes-list .form-check-label{
+  font-weight:600; color:#334155; flex:1; min-width:0;
+}
+#componentes-list .comp-badge{
+  font-size:12px; border-radius:999px; padding:.28rem .6rem;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+  white-space:nowrap;
+}
+#componentes-list .form-check-input:checked ~ .comp-badge{
+  background:#e9fbf0 !important; color:#16a34a !important;
+  transform: translateY(-1px);
+}
+#componentes-list .form-check-input:not(:checked) ~ .comp-badge{
+  background:#e9eef7 !important; color:#64748b !important;
+}
+
+/* Links “Todos vienen / Todos no” */
+#componentes-list .btn.btn-link{
+  color:#2563eb; font-weight:600; text-decoration:none;
+}
+#componentes-list .btn.btn-link:hover{ text-decoration:underline; }
+.hidden-scanner{opacity:.01;position:absolute;left:-9999px;top:-9999px;}

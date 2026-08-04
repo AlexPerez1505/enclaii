@@ -1,0 +1,152 @@
+.container {
+    background: #FFFFFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Ajuste para dispositivos más grandes */
+    min-width: 400px;
+    margin-top: 100px;
+    transition: transform 0.3s ease;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Contenedores para los campos de texto */
+.label_nomina {
+    font-family: "Helvetica Neue LT Std", Arial, sans-serif;
+    font-weight: bold;
+    color: #333333;
+    font-size: 15px;
+}
+
+.form-group {
+    margin-bottom: 0.75rem;
+    text-align: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap; /* Esto permite que los elementos se acomoden mejor en pantallas pequeñas */
+}
+
+@keyframes border-gradient {
+    0% { border-bottom: 2px solid #27AE60; } /* Verde oscuro */
+    50% { border-bottom: 2px solid #2ECC71; } /* Verde esmeralda */
+    100% { border-bottom: 2px solid #A3E635; } /* Verde lima claro */
+}
+
+.input_consulta {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0px;
+    border-bottom: 2px solid #2ECC71;
+    border-radius: 10px;
+    width: 100%;
+    animation: border-gradient 3s infinite alternate;
+}
+
+.form-group .icon-container2 {
+    width: 40px;
+    height: 40px;
+    background-color: #c0cab452;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.form-group .icon2 {
+    width: 23px;
+    height: auto;
+}
+
+.form-control {
+    padding: 0.5rem;
+    border-radius: 0 10px 10px 0;
+    border: none;
+    width: calc(100% - 36px); /* Ajustado para ocupar el 100% del ancho disponible */
+    box-sizing: border-box;
+    background-color: #F4F4F4;
+    color: #555555;
+    height: 40px;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    /* Hacer que el formulario ocupe 100% del ancho en pantallas pequeñas */
+    .container {
+        width: 100% !important;
+        min-width: 0 !important; /* Eliminar el min-width para pantallas pequeñas */
+    }
+
+    /* Cambiar la disposición de los campos a una columna (uno debajo de otro) */
+    .form-group {
+        flex-direction: column !important; /* Asegura que cada campo ocupe una fila completa */
+        width: 100% !important; /* Asegurarse de que cada elemento ocupe el 100% del ancho */
+    }
+
+    /* Los campos de texto deben ocupar el 100% del ancho */
+    .form-control {
+        width: 100% !important; /* Los inputs deben ocupar el 100% del ancho */
+        height: 40px !important; /* Ajuste para altura consistente */
+    }
+
+    /* Asegura que el botón también ocupe el 100% del ancho */
+    button {
+        width: 100% !important;
+    }
+    body .container .form-group {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    
+    body .container .form-control {
+        width: 100% !important;
+    }
+    
+    
+}
+
+
+.btn-custom {
+    width: 110px;
+    margin: 0 auto;
+    display: block; /* Esto asegura que el margin auto funcione correctamente */
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    height: auto;
+    margin-top: 0;
+}
+.btn-reducido {
+    width: auto; /* Ajusta el ancho del botón al contenido */
+    margin: 0 auto; /* Centra el botón horizontalmente */
+    display: block; /* Hace que el botón sea un bloque para que se pueda centrar */
+}

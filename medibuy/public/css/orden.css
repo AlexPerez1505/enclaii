@@ -1,0 +1,232 @@
+body {
+    background-color: #e6f0fa; /* Azul pastel */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container-remisiones {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.titulo {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #1a3f66;
+}
+
+#tabla-remisiones {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fdfdfd;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+}
+
+#tabla-remisiones thead {
+    background-color: #f0f7ff;
+}
+
+#tabla-remisiones th, #tabla-remisiones td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+#tabla-remisiones tr:hover {
+    background-color: #f5faff;
+}
+
+.btn-link {
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.btn-link.blue {
+    color: #0074cc;
+}
+
+.btn-link.blue:hover {
+    color: #005fa3;
+    text-decoration: underline;
+}
+
+.btn-link.green {
+    color: #2ca851;
+}
+
+.btn-link.green:hover {
+    color: #1f8c3b;
+    text-decoration: underline;
+}
+/* Contenedor del buscador y controles */
+.dataTables_wrapper {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Input de búsqueda */
+.dataTables_filter input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background-color: #f9fcff;
+    transition: border 0.3s;
+}
+
+.dataTables_filter input:focus {
+    outline: none;
+    border-color: #0074cc;
+}
+
+/* Selector de registros por página */
+.dataTables_length select {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 5px 10px;
+    background-color: #f9fcff;
+}
+
+/* Información del estado ("Mostrando 1 a 10...") */
+.dataTables_info {
+    padding-top: 10px;
+    color: #555;
+}
+
+/* Paginación */
+.dataTables_paginate {
+    padding-top: 10px;
+}
+
+.dataTables_paginate .paginate_button {
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 6px;
+    border: none;
+    background-color: #e6f0fa;
+    color: #0074cc;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background-color: #d0e7fb;
+    color: #005fa3;
+}
+
+.dataTables_paginate .paginate_button.current {
+    background-color: #0074cc;
+    color: white !important;
+    font-weight: bold;
+}
+/* Estilos generales para los botones de DataTables */
+.dt-button {
+    border: none !important;
+    border-radius: 8px !important; /* Bordes más redondeados */
+    width: 87px;
+    height: auto;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Efecto hover */
+.dt-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Colores específicos por tipo de botón */
+
+/* Botón Copiar (Color Pastel Suave) */
+.buttons-copy {
+    background-color: #b3cde0 !important; /* Azul pastel */
+    color: white !important;
+    border: 1px solid #b3cde0 !important;
+}
+
+.buttons-copy:hover {
+    background-color: #a0b9d6 !important; /* Azul más oscuro */
+    color: white !important;
+    border-color: #a0b9d6 !important;
+}
+
+/* Botón CSV (Color Pastel Azul) */
+.buttons-csv {
+    background-color: #01458e !important; /* Azul pastel claro */
+    color: white !important;
+    
+}
+
+.buttons-csv:hover {
+    background-color: #8bb8d4 !important; /* Azul más oscuro */
+    color: white !important;
+    border-color: #8bb8d4 !important;
+}
+
+/* Botón Excel (Verde Pastel) */
+.buttons-excel {
+    background-color: #339d4a !important; /* Verde pastel */
+    color: white !important;
+   
+}
+
+.buttons-excel:hover {
+    background-color: #81c784 !important; /* Verde más oscuro */
+    color: white !important;
+    border-color: #81c784 !important;
+}
+
+/* Botón PDF (Rojo Pastel) */
+.buttons-pdf {
+    background-color: #ff3131 !important; /* Rojo pastel */
+    color: white !important;
+   
+}
+
+.buttons-pdf:hover {
+    background-color: #f67280 !important; /* Rojo más oscuro */
+    color: white !important;
+    border-color: #f67280 !important;
+}
+
+/* Botón Imprimir (Gris Pastel) */
+.buttons-print {
+    background-color: #e0e0e0 !important; /* Gris suave */
+    color: #555 !important;
+    border: 1px solid #e0e0e0 !important;
+}
+
+.buttons-print:hover {
+    background-color: #d1d1d1 !important; /* Gris más oscuro */
+    color: #333 !important;
+    border-color: #d1d1d1 !important;
+}
+
+/* Botón para otro uso (Morado Pastel) */
+.buttons-other {
+    background-color: #d1c4e9 !important; /* Morado pastel */
+    color: white !important;
+    border: 1px solid #d1c4e9 !important;
+}
+
+.buttons-other:hover {
+    background-color: #b39ddb !important; /* Morado más oscuro */
+    color: white !important;
+    border-color: #b39ddb !important;
+}

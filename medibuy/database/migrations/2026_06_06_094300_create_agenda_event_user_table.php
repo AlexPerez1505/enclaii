@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('agenda_event_user', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('agenda_event_id')
+                  ->constrained('agenda_events')
+                  ->cascadeOnDelete();
+
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->cascadeOnDelete();
+
+            $table->timestamps();
+
+            // Evita duplicar el mismo usuario en el mismo evento
+            $table->unique(['agenda_event_id', 'user_id']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('agenda_event_user');
+    }
+};

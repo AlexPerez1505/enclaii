@@ -1,0 +1,461 @@
+
+body {
+    background-color: #f8faff;
+    font-family: 'Inter', sans-serif;
+    color: #2c3e50;
+    line-height: 1.6;
+    transition: background-color 0.3s ease;
+}
+h2 {
+    font-weight: 600;
+    color: #2a2e35;
+    margin-bottom: 1.5rem;
+}
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease;
+}
+.card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.card-header {
+    font-weight: 500;
+    font-size: 1.05rem;
+    background: linear-gradient(90deg, #d0ebff, #a5d8ff);
+    color: #1c3d5a;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+/* Botones */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.btn-outline-primary {
+    color: #5c7cfa;
+    border-color: #5c7cfa;
+}
+.btn-outline-primary:hover {
+    background-color: #5c7cfa;
+    color: #fff;
+}
+.btn-outline-secondary {
+    color: #868e96;
+    border-color: #868e96;
+}
+.btn-outline-secondary:hover {
+    background-color: #868e96;
+    color: #fff;
+}
+.text-success {
+    color: #51cf66 !important;
+    font-weight: bold;
+}
+
+/* Layout móvil */
+@media (max-width: 991px) {
+    .mobile-buttons {
+        flex-direction: column !important;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}
+/* Tabla */
+.table {
+    font-size: 0.95rem;
+}
+.table thead {
+    background-color: #e3f2fd;
+    font-weight: 600;
+}
+/* Responsive print */
+@media print {
+    .btn, .d-flex, .container > .d-flex {
+        display: none !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+    }
+}
+.container {
+    animation: fadeIn 0.6s ease-in-out;
+    margin-top:90px !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+ .welcome-link {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            
+            border: 1px solid transparent;
+            border-radius: 5px;
+            background-color: #7CB8EB;
+            transition: all 0.3s ease, transform 0.3s ease; /* Agregamos transición para transform */
+        }
+        
+        .welcome-link:hover {
+            color: black;
+            background-color: #7CB8EB;
+            border: 1px solid #7CB8EB;
+            text-decoration: none;
+            transform: scale(0.9); /* Aumenta el tamaño en un 10% */
+        }
+@media (max-width: 375px) {
+    .titulos {
+        font-size: 20px;
+        transform: translateX(-30%); /* Elimina el desplazamiento lateral en pantallas pequeñas */
+    }
+}
+.header-container {
+            position: fixed; /* Hace que el contenedor sea fijo */
+            top: 0; /* Lo fija en la parte superior de la pantalla */
+            left: 0; /* Lo fija al inicio del viewport horizontal */
+            width: 100%; /* Asegura que el encabezado abarque todo el ancho de la pantalla */
+            z-index: 1000; /* Coloca el encabezado por encima de otros elementos */
+            background-color: #ffffff; /* Añade un fondo para que no se superponga con otros elementos */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Añade una ligera sombra para destacarlo */
+            display: grid;
+            grid-template-columns: auto 1fr auto; /* Tres columnas: menú, título, espacio */
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        body {
+    padding-top: 10px; /* Ajusta este valor al alto del encabezado */
+}
+       /* Logo de encabezado */
+       .logo {
+            width: 230px; /* Tamaño del logo en pantallas grandes */
+            height: auto;
+        }
+          /* Media query para pantallas pequeñas */
+          @media (max-width: 768px) {
+            body.menu-open .contenedor_general {
+        transform: translateX(250px);
+    }
+    body {
+    padding-top: -100% !important; /* Ajusta este valor al alto del encabezado */
+}
+    .header-container {
+        grid-template-columns: 2fr; /* Una sola columna en pantallas pequeñas */
+        text-align: center; /* Centra todo en el eje horizontal */
+    }
+    .menu-hamburguesa {
+        justify-self: start; /* Alinea el menú al inicio en pantallas pequeñas */
+    }
+            .logo {
+                width: 180px;
+                order: -1;
+            }
+            .titulos {
+        font-size: 20px;
+        transform: translateX(-45%); /* Elimina el desplazamiento lateral en pantallas pequeñas */
+    }
+            .custom-margin {
+                margin-left: 0;
+            }
+            .customer-margin {
+            margin-left: 0 !important;
+            }
+            .contenedor {
+                    margin-left: 14px !important; /* Forzamos a sobrescribir otros estilos */
+                    margin-right: 30px;
+            }
+            .contenedor_observaciones {
+                    margin-left: 14px !important;
+                    margin-right: 14px !important;
+            }
+            .image-preview {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center; /* Centrar las imágenes */
+            }
+            .image-preview-container {
+                width: calc(50% - 10px); /* Dos imágenes en una fila */
+                margin-right: 5px;
+                margin-bottom: 10px;
+            }
+            .preview-contenedor {
+                max-width: 100%; /* No limitar el ancho en pantallas pequeñas */
+                padding: 10px;
+                box-shadow: none;
+            }
+            .file-input-text {
+                font-size: 14px; /* Reducir el tamaño del texto para pantallas más pequeñas */
+                height: 40px; /* Reducir la altura para ajustarse mejor en pantallas pequeñas */
+            }
+            .preview-container {
+            padding: 10px; /* Reducir el padding en pantallas pequeñas */
+            border-radius: 5px; /* Redondear más los bordes en pantallas pequeñas */
+            max-width: 100%; /* Asegurar que el contenedor ocupe todo el ancho */
+            }
+            .video-preview video {
+                max-width: 100%; /* Asegurar que el video no se desborde */
+                height: 280px; /* Mantener la proporción */
+                border-radius: 5px; /* Redondear los bordes del video */
+            }
+            .cuadro {
+                margin-left: -15px !important;
+                margin-right: 5px !important;
+                width: 100%;
+                padding: -200px;
+            }
+        }
+         /* Estilos para el menú hamburguesa */
+.menu-hamburguesa {
+    position: relative;
+    z-index: 10000;
+    grid-column: 1; /* Coloca el menú en la primera columna */
+}
+
+.menu-hamburguesa button {
+    background-color: #ffffff;
+
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.menu-sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #F4F4F4;
+    color: #fff;
+
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-sidebar.open {
+    left: 0;
+}
+/* Overlay (fondo oscuro al abrir menú) */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 10000;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+/* Estilos de los ítems del menú */
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.menu-items li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #CCCCCC;
+    transition: background 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.menu-items li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    width: 210px;
+    height: 35px;
+    transition: color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-items li i {
+    margin-right: 10px;
+    font-size: 18px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Subrayado animado */
+.menu-items li a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu-items li a:hover::after {
+    transform: scaleX(1);
+}
+
+.menu-items li:hover {
+    background: rgba(0, 123, 255, 0.1);
+    transform: scale(1.02);
+    border-radius: 5px;
+}
+
+.menu-items li a:hover {
+    color: #01579b;
+}
+
+.menu-items li a:hover i {
+    color: #007bff;
+    transform: rotate(10deg);
+}
+
+
+
+/* Imagen del icono */
+.menu-icon-image {
+    width: 34px; /* Tamaño del icono */
+    height: 34px;
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+    object-fit: contain;
+}
+.menu-icon-imagen {
+    width: 25px; /* Tamaño del icono */
+    height: 25px;
+    margin-right: 11px; /* Espacio entre el icono y el texto */
+    margin-left: 3px;
+    object-fit: contain;
+}
+
+.logout-button {
+    border: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+}
+
+.logout-button i {
+    margin-right: 10px;
+}
+.menu-logo {
+    width: 220px;
+    height: auto;
+}
+/* Logo del menú */
+.menu-header {
+    padding: 20px;
+    background: #F4F4F4;
+    text-align: center;
+}
+.menu-hamburguesa .menu-icon img {
+    width: 34px;
+    height: 34px;
+}
+
+/* Sección de bienvenida */
+.welcome-section {
+    padding: 15px 20px;
+    background: #7cb8eb;
+    border-bottom: 1px solid #444;
+    color: black;
+    font-size: 14px;
+}
+
+.welcome-section .user-name {
+    font-weight: bold;
+    color: #33373b;
+}
+
+/* Estilo para ocultar el contenido al moverlo */
+        /* Estilos proporcionados */
+        .titulos {
+            font-family: "Helvetica Neue LT Std", Arial, sans-serif;
+            font-weight: 900;
+            color: #333333;
+            font-size: 30px;
+            line-height: 24px;
+            text-align: center; /* Centra el texto */
+            grid-column: 2; /* Coloca el título en la columna central del grid */
+            margin: 0 auto; /* Centra el texto horizontalmente dentro de la columna */
+            transform: translateX(-10%); /* Mueve el título ligeramente hacia la izquierda */
+        }
+
+        .titulos_encabezado {
+            font-family: "Helvetica Neue LT Std", Arial, sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            margin-left: 25px;
+        }
+        /* Linea de encabezado*/
+        .gradient-bg-animation {
+            width: 100%;
+            bottom: 0; /* Posiciona la línea en la parte inferior del encabezado */
+            position: absolute;
+            height: 4px;
+            border-radius: 2.5px;
+            background: linear-gradient(26deg, #01448F 20%, #1E6BB8 40%, #3498DB 60%, #87CEFA 80%, #B0E0E6 100%);
+            background-size: 300% 100%;
+            animation: gradient 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+            margin-top: 10px;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+   
+.back-button {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-icon {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .menu-icon img {
+        width: 45px;
+        height: 40px;
+    }
+
+   
