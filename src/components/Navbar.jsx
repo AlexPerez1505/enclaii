@@ -9,7 +9,24 @@ const links = [
   { href: '/#modulos',       label: 'Módulos' },
 ]
 
-export default function Navbar() {
+function AudienceSwitch({ audience, onAudienceChange, compact = false }) {
+  const buttonClass = compact ? 'gap-1 px-2 py-1.5 text-[10px]' : 'gap-2 px-4 py-2 text-sm'
+
+  return (
+    <div className={`flex shrink-0 items-center rounded-full border border-[#60a5fa]/70 bg-[#050d1f]/70 p-0.5 shadow-lg shadow-[#2196f3]/10 ${compact ? 'whitespace-nowrap' : ''}`} role="group" aria-label="Tipo de plataforma">
+      <button type="button" aria-pressed={audience === 'humana'} onClick={() => onAudienceChange('humana')} className={`inline-flex items-center font-medium transition-all ${buttonClass} ${audience === 'humana' ? 'bg-[#2196f3] text-white shadow-md shadow-[#2196f3]/30' : 'text-slate-300 hover:text-white'}`}>
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0h14Z" /></svg>
+        Humana
+      </button>
+      <button type="button" aria-pressed={audience === 'veterinaria'} onClick={() => onAudienceChange('veterinaria')} className={`inline-flex items-center font-medium transition-all ${buttonClass} ${audience === 'veterinaria' ? 'bg-[#22c7f2] text-slate-950 shadow-md shadow-[#22c7f2]/30' : 'text-slate-300 hover:text-white'}`}>
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.5 10.5a2.5 2.5 0 1 0-2.1-3.8 2.5 2.5 0 0 0 2.1 3.8Zm9 0a2.5 2.5 0 1 0-2.1-3.8 2.5 2.5 0 0 0 2.1 3.8ZM4.8 15.1a2.3 2.3 0 1 0-1.9-3.5 2.3 2.3 0 0 0 1.9 3.5Zm14.4 0a2.3 2.3 0 1 0-1.9-3.5 2.3 2.3 0 0 0 1.9 3.5ZM12 12.2c-3 0-5.5 2.2-5.5 4.8 0 2.3 2.1 4 5.5 4s5.5-1.7 5.5-4c0-2.6-2.5-4.8-5.5-4.8Z" /></svg>
+        Veterinaria
+      </button>
+    </div>
+  )
+}
+
+export default function Navbar({ audience, onAudienceChange }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [showModal, setShowModal] = useState(false)
@@ -155,7 +172,7 @@ export default function Navbar() {
       `}</style>
 
       <nav
-        className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
+        className={`relative max-w-6xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
           scrolled ? 'h-20' : 'h-28'
         }`}
       >
@@ -184,7 +201,7 @@ export default function Navbar() {
         </Link>
 
         {/* Links desktop */}
-        <ul className="hidden md:flex gap-8 text-sm font-medium items-center">
+        <ul className="hidden lg:flex gap-8 text-sm font-medium items-center">
           {links.map(l => (
             <li key={l.href}>
               <a href={l.href} className="nav-link relative">{l.label}</a>
@@ -199,7 +216,7 @@ export default function Navbar() {
         </ul>
 
         {/* Toggle + CTA (desktop) */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <AnimatedThemeToggler />
           <button
             onClick={() => setShowModal(true)}
@@ -211,8 +228,13 @@ export default function Navbar() {
           </button>
         </div>
 
+        <div className="hidden lg:block absolute right-[-80px] top-1/2 -translate-y-1/2">
+          <AudienceSwitch audience={audience} onAudienceChange={onAudienceChange} />
+        </div>
+
         {/* Toggle + Burger (mobile) */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2">
+          <AudienceSwitch compact audience={audience} onAudienceChange={onAudienceChange} />
           <AnimatedThemeToggler />
           <button
             className="nav-burger p-2"
@@ -231,7 +253,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`nav-mobile md:hidden overflow-hidden transition-all duration-300
+        className={`nav-mobile lg:hidden overflow-hidden transition-all duration-300
           ${open ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}
       >
         <div className="px-6 py-4 space-y-3">

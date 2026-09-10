@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Lenis from 'lenis'
 import { gsap } from 'gsap'
@@ -23,15 +23,15 @@ import PorQue from './components/PorQue'
 
 gsap.registerPlugin(ScrollTrigger)
 
-function Home() {
+function Home({ audience }) {
   return (
     <main>
-      <Hero />
+      <Hero audience={audience} />
       <Stats />
       <ScrollStory />
-      <ThreeHero />
-      <Pilares />
-      <Planes />
+      <ThreeHero audience={audience} />
+      <Pilares audience={audience} />
+      <Planes audience={audience} />
       {/* <LottieScrub /> */}
       <ComoFunciona />
       <ScrubVideo />
@@ -42,6 +42,8 @@ function Home() {
 }
 
 export default function App() {
+  const [audience, setAudience] = useState('humana')
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.4,
@@ -59,9 +61,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#050d1f] text-slate-200 overflow-x-hidden">
       <SmoothCursor />
-      <Navbar />
+      <Navbar audience={audience} onAudienceChange={setAudience} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home audience={audience} />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/por-que" element={<PorQue />} />
       </Routes>

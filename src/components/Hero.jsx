@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function Hero() {
+export default function Hero({ audience = 'humana' }) {
   const sectionRef = useRef(null)
   const orb1Ref = useRef(null)
   const orb2Ref = useRef(null)
@@ -79,19 +79,43 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="inicio" className="relative h-screen min-h-[720px] overflow-hidden flex items-center">
-      <div className={isLight ? "absolute inset-0 bg-[#f8fbff]" : "absolute inset-0 bg-gradient-to-b from-[#071428] via-[#050d1f] to-[#050d1f]"} />
+    <section ref={sectionRef} id="inicio" className="relative h-auto min-h-[760px] lg:h-screen lg:min-h-[720px] overflow-hidden flex items-center">
+      <div className={isLight ? "absolute inset-0 bg-[#eef5f8]" : "absolute inset-0 bg-gradient-to-b from-[#071428] via-[#050d1f] to-[#050d1f]"} />
 
       <div className="hero-visual absolute inset-0 z-0 pointer-events-none">
-        <video
-          key={isLight ? 'hero-light-video' : 'hero-dark-video'}
-          src={isLight ? '/videos/cuerpo2-blanco.mp4' : '/videos/cuerpo2-azul.mp4'}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover object-[36%_center] opacity-95"
-        />
+        {audience === 'veterinaria' ? (
+          isLight ? (
+            <video
+              key="veterinary-light-hero"
+              src="/videos/hero-vetrinaria-dia.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 z-[1] h-full w-full object-cover object-[72%_center]"
+            />
+          ) : (
+            <video
+              key="veterinary-dark-hero"
+              src="/prueba-02.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute right-0 top-[2%] h-[96%] w-[70%] object-contain object-right"
+            />
+          )
+        ) : (
+          <video
+            key={isLight ? 'hero-light-video' : 'hero-dark-video'}
+            src={isLight ? '/videos/cuerpo2-blanco.mp4' : '/videos/cuerpo2-azul.mp4'}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover object-[36%_center] opacity-95"
+          />
+        )}
       </div>
 
       <div ref={orb1Ref} className="absolute inset-0 will-change-transform pointer-events-none">
@@ -122,9 +146,9 @@ export default function Hero() {
       <div className={isLight ? "absolute inset-y-0 left-0 z-[1] w-3/5 bg-gradient-to-r from-white/96 via-white/72 to-transparent pointer-events-none" : "absolute inset-y-0 left-0 z-[1] w-3/5 bg-gradient-to-r from-[#050d1f]/94 via-[#050d1f]/66 to-transparent pointer-events-none"} />
       <div className={isLight ? "absolute inset-y-0 right-0 z-[1] w-2/5 bg-gradient-to-l from-white/36 to-transparent pointer-events-none" : "absolute inset-y-0 right-0 z-[1] w-2/5 bg-gradient-to-l from-[#050d1f]/36 to-transparent pointer-events-none"} />
 
-      <div className="hero-content-inner relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 pt-20 md:pt-24 pb-6 md:pb-10">
-        <div className="relative h-auto md:h-[calc(100vh-8rem)] min-h-auto md:min-h-[560px] flex flex-col md:block">
-          <div className="relative md:absolute md:left-0 md:top-[45%] w-full max-w-[620px] md:-translate-y-1/2 text-center lg:text-left">
+      <div className="hero-content-inner relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-6 pt-20 lg:pt-24 pb-6 lg:pb-10">
+        <div className="relative h-auto lg:h-[calc(100vh-8rem)] min-h-auto lg:min-h-[560px] flex flex-col lg:block">
+          <div className="relative lg:absolute lg:left-0 lg:top-[45%] w-full max-w-[620px] lg:-translate-y-1/2 text-center lg:text-left">
             <span className="hero-line mb-4 inline-block text-xs font-semibold uppercase tracking-[0.32em] text-[#60a5fa]">
               Plataforma clinica inteligente
             </span>
@@ -164,28 +188,23 @@ export default function Hero() {
               </a>
             </div>
 
-            <p className={isLight ? "hero-sub text-base md:text-lg text-slate-700 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed" : "hero-sub text-base md:text-lg text-slate-300 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed"}>
-              <strong className={isLight ? "text-slate-950 font-medium" : "text-white font-medium"}>ENCLAII</strong> centraliza captura,
-              almacenamiento y analisis de estudios endoscopicos en la nube, con asistencia
-              diagnostica para hospitales y clinicas.
-            </p>
-
           </div>
 
-          <div className={isLight ? "relative md:absolute mt-8 md:mt-0 md:bottom-6 md:right-0 grid w-full max-w-lg grid-cols-3 gap-3 md:gap-4 border-t border-slate-300/70 pt-4 md:pt-6" : "relative md:absolute mt-8 md:mt-0 md:bottom-6 md:right-0 grid w-full max-w-lg grid-cols-3 gap-3 md:gap-4 border-t border-white/10 pt-4 md:pt-6"}>
+          <div className={isLight ? "relative lg:absolute mt-8 lg:mt-0 lg:bottom-6 lg:right-0 grid w-full max-w-lg grid-cols-3 gap-3 lg:gap-4 border-t border-slate-300/70 pt-4 lg:pt-6" : "relative lg:absolute mt-8 lg:mt-0 lg:bottom-6 lg:right-0 grid w-full max-w-lg grid-cols-3 gap-3 lg:gap-4 border-t border-white/10 pt-4 lg:pt-6"}>
             {[
               { value: 'Nube', label: 'Estudios disponibles' },
               { value: 'IA', label: 'Apoyo diagnostico' },
               { value: 'DICOM', label: 'Flujo compatible' },
             ].map(s => (
-              <div key={s.label} className="hero-stat text-center md:text-left">
+              <div key={s.label} className="hero-stat text-center lg:text-left">
                 <div className="text-lg md:text-xl lg:text-2xl font-bold text-[#60a5fa] mb-1">{s.value}</div>
                 <div className={isLight ? "text-[9px] md:text-[10px] lg:text-xs text-slate-600 uppercase tracking-wider md:tracking-widest leading-relaxed" : "text-[9px] md:text-[10px] lg:text-xs text-slate-400 uppercase tracking-wider md:tracking-widest leading-relaxed"}>{s.label}</div>
               </div>
             ))}
           </div>
         </div>
-      </div>      <div className="absolute bottom-0 left-0 right-0 z-[1] h-36 bg-gradient-to-t from-[#050d1f] to-transparent pointer-events-none" />
+      </div>
+      <div className={isLight ? "absolute bottom-0 left-0 right-0 z-[1] h-36 bg-gradient-to-t from-[#eef5f8] to-transparent pointer-events-none" : "absolute bottom-0 left-0 right-0 z-[1] h-36 bg-gradient-to-t from-[#050d1f] to-transparent pointer-events-none"} />
 
       <div className="scroll-hint absolute bottom-8 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500">
         <span className="text-[10px] tracking-[0.4em] uppercase">Scroll</span>

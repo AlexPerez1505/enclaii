@@ -8,6 +8,7 @@ const planes = [
     beneficios: ['Gestión de estudios', 'Almacenamiento en la nube', 'Reportes digitales'],
     detalles: ['Implementación rápida', 'Acceso seguro en la nube', 'Flujo ideal para clínicas independientes'],
     imagen: '/plan-clinica.png',
+    imagenVeterinaria: '/plan-clinica-v.png',
     destacado: false,
   },
   {
@@ -16,6 +17,7 @@ const planes = [
     beneficios: ['Usuarios ilimitados', 'Roles y permisos', 'Auditoría clínica'],
     detalles: ['Control por perfiles', 'Trazabilidad institucional', 'Escalable para múltiples áreas clínicas'],
     imagen: '/plan-hospital.png',
+    imagenVeterinaria: '/plan-hospital-v.png',
     destacado: true,
   },
   {
@@ -24,11 +26,12 @@ const planes = [
     beneficios: ['Multi-sede', 'Panel administrativo', 'Analítica operativa'],
     detalles: ['Administración centralizada', 'Indicadores por sede', 'Estandarización de procesos médicos'],
     imagen: '/plan-red-medica.png',
+    imagenVeterinaria: '/plan-mixto.png',
     destacado: false,
   },
 ]
 
-export default function Planes() {
+export default function Planes({ audience = 'humana' }) {
   const sectionRef = useRef(null)
   const [flippedPlans, setFlippedPlans] = useState({})
 
@@ -524,7 +527,7 @@ export default function Planes() {
                     )}
 
                     <div className="plan-media">
-                      <img src={plan.imagen} alt={plan.nombre} />
+                      <img src={audience === 'veterinaria' ? plan.imagenVeterinaria : plan.imagen} alt={plan.nombre} />
                     </div>
 
                     <h3 className="plan-title mb-2 text-xl font-semibold md:text-2xl">{plan.nombre}</h3>

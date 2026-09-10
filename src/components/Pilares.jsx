@@ -31,7 +31,7 @@ const pilares = [
   },
 ]
 
-export default function Pilares() {
+export default function Pilares({ audience = 'humana' }) {
   const sectionRef = useRef(null)
 
   useEffect(() => {
@@ -332,8 +332,8 @@ export default function Pilares() {
           />
 
           <img
-            src="/pc.png"
-            alt="Plataforma médica ENCLAII"
+            src={audience === 'veterinaria' ? '/pc-veterinaria.png' : '/pc.png'}
+            alt={audience === 'veterinaria' ? 'Plataforma veterinaria ENCLAII' : 'Plataforma médica ENCLAII'}
             className="pc-center pointer-events-none absolute left-1/2 top-1/2 w-[220px] md:w-[440px] lg:w-[560px] xl:w-[680px] select-none drop-shadow-[0_0_55px_rgba(33,150,243,0.38)]"
           />
 

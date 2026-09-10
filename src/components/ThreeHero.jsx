@@ -21,7 +21,7 @@ function LottieAnimation() {
   return <div ref={containerRef} className="w-full h-full" />
 }
 
-export default function ThreeHero() {
+export default function ThreeHero({ audience = 'humana' }) {
   return (
     <section className="relative min-h-screen bg-[#050d1f] overflow-hidden flex items-center justify-center py-20">
 
@@ -62,7 +62,15 @@ export default function ThreeHero() {
         {/* Lottie protagonista con glow azul */}
         <div className="w-[320px] h-[320px] md:w-[450px] md:h-[450px] lg:w-[550px] lg:h-[550px]
           drop-shadow-[0_0_80px_rgba(33,150,243,0.7)]">
-          <LottieAnimation />
+          {audience === 'veterinaria' ? (
+            <img
+              src="/gastroscopia.png"
+              alt="Gastroscopia veterinaria"
+              className="h-full w-full object-contain"
+            />
+          ) : (
+            <LottieAnimation />
+          )}
         </div>
       </div>
     </section>
