@@ -10,7 +10,7 @@ const links = [
 ]
 
 function AudienceSwitch({ audience, onAudienceChange, compact = false }) {
-  const buttonClass = compact ? 'gap-1 px-2 py-1.5 text-[10px]' : 'gap-2 px-4 py-2 text-sm'
+  const buttonClass = compact ? 'gap-1 px-2 py-1.5 text-[10px] rounded-full' : 'gap-2 px-4 py-2 text-sm rounded-full'
 
   return (
     <div className={`flex shrink-0 items-center rounded-full border border-[#60a5fa]/70 bg-[#050d1f]/70 p-0.5 shadow-lg shadow-[#2196f3]/10 ${compact ? 'whitespace-nowrap' : ''}`} role="group" aria-label="Tipo de plataforma">
@@ -216,20 +216,21 @@ export default function Navbar({ audience, onAudienceChange }) {
         </ul>
 
         {/* Toggle + CTA (desktop) */}
-        <div className="hidden lg:flex items-center gap-3">
-          <AnimatedThemeToggler />
-          <button
-            onClick={() => setShowModal(true)}
-            className="inline-flex items-center gap-2 bg-[#2196f3] text-white px-5 py-2 rounded-lg
-              text-sm font-medium hover:bg-[#1e88e5] transition-all duration-200
-              shadow-lg shadow-[#2196f3]/25 hover:shadow-[#2196f3]/40 hover:-translate-y-px"
-          >
-            Solicitar demo
-          </button>
-        </div>
-
-        <div className="hidden lg:block absolute right-[-80px] top-1/2 -translate-y-1/2">
-          <AudienceSwitch audience={audience} onAudienceChange={onAudienceChange} />
+        <div className="hidden lg:flex items-center gap-6">
+          <div className="ml-4">
+            <AnimatedThemeToggler />
+          </div>
+          <div className="flex items-center gap-3 ml-6">
+            <button
+              onClick={() => setShowModal(true)}
+              className="inline-flex items-center gap-2 bg-[#2196f3] text-white px-5 py-1.5 rounded-lg
+                text-sm font-medium whitespace-nowrap hover:bg-[#1e88e5] transition-all duration-200
+                shadow-lg shadow-[#2196f3]/25 hover:shadow-[#2196f3]/40 hover:-translate-y-px"
+            >
+              Solicitar demo
+            </button>
+            <AudienceSwitch audience={audience} onAudienceChange={onAudienceChange} />
+          </div>
         </div>
 
         {/* Toggle + Burger (mobile) */}
